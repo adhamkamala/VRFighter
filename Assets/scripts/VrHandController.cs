@@ -6,10 +6,11 @@ public class VrHandController : MonoBehaviour
 { 
     public LayerMask layer;
     public Transform gameObj;
+    private ScoreSystem scoreSystem;
     // Start is called before the first frame update
     void Start()
     {
-        
+        scoreSystem = FindObjectOfType<ScoreSystem>();
     }
 
     // Update is called once per frame
@@ -22,6 +23,7 @@ public class VrHandController : MonoBehaviour
         {
             Debug.Log("something hit");
             Destroy(hit.transform.gameObject);
+            scoreSystem.AddScore(50);
         }
     }
 }
