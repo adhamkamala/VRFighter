@@ -4017,7 +4017,7 @@ MonoBehaviour:
   pointsLocation:
   - {fileID: 538807368}
   - {fileID: 957432780}
-  beat: 1.15
+  beat: 1
 --- !u!4 &1836822817
 Transform:
   m_ObjectHideFlags: 0
