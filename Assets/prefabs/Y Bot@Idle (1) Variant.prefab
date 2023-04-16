@@ -667,7 +667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c41358fbff49bc249bafc3e58a5a4bff, type: 3}
       propertyPath: m_Name
-      value: Y Bot@Idle (1)
+      value: Y Bot@Idle (1) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c41358fbff49bc249bafc3e58a5a4bff, type: 3}
       propertyPath: m_IsActive
@@ -909,9 +909,9 @@ MonoBehaviour:
   - m_Rig: {fileID: 44692210}
     m_Active: 1
   - m_Rig: {fileID: 2109740721}
-    m_Active: 1
+    m_Active: 0
   - m_Rig: {fileID: 1452600031}
-    m_Active: 1
+    m_Active: 0
   m_Effectors: []
 --- !u!114 &1045889709
 MonoBehaviour:
