@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GeneralStates:
     LoadedProjectGUID:
-      valueInternal: 0f07291e87ab0624ebe65974ceb0e35b
+      valueInternal: 3dfbd7cb03a4ba04e80a8fff27f81cd7
     RecentlyOpenedProjectPath:
       valueInternal: Assets
     RecentlyOpenedProjectGUIDsList:
+    - valueInternal: 3dfbd7cb03a4ba04e80a8fff27f81cd7
     - valueInternal: 0f07291e87ab0624ebe65974ceb0e35b
     - valueInternal: ca654d80eab77c343a3157276019c92f
