@@ -24,7 +24,7 @@ public class PadsSystem : MonoBehaviour
         LeftHandPad.material = leftHandMaterial;
         RightHandPad.material = leftHandMaterial;
 
-        leftHandText.SetText("AD");
+        leftHandText.SetText("1");
         rightHandText.SetText("X");
     }
 
@@ -32,5 +32,10 @@ public class PadsSystem : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void startRandom()
+    {
+
     }
 }
