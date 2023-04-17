@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 49153453}
   - component: {fileID: 49153452}
   - component: {fileID: 49153457}
+  - component: {fileID: 49153458}
   m_Layer: 0
   m_Name: RightHand Controller
   m_TagString: Untagged
@@ -713,7 +714,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49153450}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e370f9575f1d0241940ee9112b137a7, type: 3}
   m_Name: 
@@ -723,6 +724,24 @@ MonoBehaviour:
     m_Bits: 128
   gameObj: {fileID: 49153451}
   distance: 1.2
+--- !u!114 &49153458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49153450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71dbbf0f29624348a787128dcdfb4f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 128
+  gameObj: {fileID: 49153451}
+  distance: 5
+  rightHandMaterial: {fileID: 2100000, guid: 9542fd9c83900b345b5cd18df40317fc, type: 2}
 --- !u!1 &54516235
 GameObject:
   m_ObjectHideFlags: 0
@@ -1951,11 +1970,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftHandPad: {fileID: 510005489}
-  rightHandPad: {fileID: 373666970}
+  rightHandPad: {fileID: 855622705}
   leftHandMaterial: {fileID: 2100000, guid: 1ff3d260b71621d4fb5acd835459ef5b, type: 2}
   rightHandMaterial: {fileID: 2100000, guid: 9542fd9c83900b345b5cd18df40317fc, type: 2}
   leftHandText: {fileID: 1013440842}
-  rightHandText: {fileID: 1057682467}
+  rightHandText: {fileID: 1837577432}
   handIndicators:
   - {fileID: 373666970}
   - {fileID: 510005489}
@@ -1980,6 +1999,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &605928108 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1723911351708621364, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
+  m_PrefabInstance: {fileID: 906102904}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &617127279
 GameObject:
   m_ObjectHideFlags: 0
@@ -2709,6 +2733,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8169382868667117632, guid: c41358fbff49bc249bafc3e58a5a4bff, type: 3}
   m_PrefabInstance: {fileID: 522124889}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &855622705 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7888610695528730058, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
+  m_PrefabInstance: {fileID: 906102904}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &860733818 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5372056943023685468, guid: c41358fbff49bc249bafc3e58a5a4bff, type: 3}
@@ -2935,6 +2964,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1330755669629619180, guid: c41358fbff49bc249bafc3e58a5a4bff, type: 3}
   m_PrefabInstance: {fileID: 522124889}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &906102904
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1317137776}
+    m_Modifications:
+    - target: {fileID: 338029286933424447, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
+      propertyPath: m_Name
+      value: BoxingPads Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723911351708621364, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723911351708621364, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0147
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723911351708621364, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1681
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723911351708621364, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.053
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723911351708621364, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723911351708621364, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723911351708621364, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723911351708621364, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723911351708621364, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723911351708621364, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723911351708621364, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
 --- !u!1 &911126701
 GameObject:
   m_ObjectHideFlags: 0
@@ -3745,6 +3831,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 605928108}
   - {fileID: 432328602}
   m_Father: {fileID: 641901411}
   m_RootOrder: 5
@@ -4050,6 +4137,7 @@ GameObject:
   - component: {fileID: 1514238106}
   - component: {fileID: 1514238105}
   - component: {fileID: 1514238110}
+  - component: {fileID: 1514238111}
   m_Layer: 0
   m_Name: LeftHand Controller
   m_TagString: Untagged
@@ -4620,7 +4708,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1514238103}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e370f9575f1d0241940ee9112b137a7, type: 3}
   m_Name: 
@@ -4630,6 +4718,24 @@ MonoBehaviour:
     m_Bits: 128
   gameObj: {fileID: 1514238104}
   distance: 1.2
+--- !u!114 &1514238111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514238103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75f217ec8c334e4a9273f3e7dc48e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 128
+  gameObj: {fileID: 1514238104}
+  distance: 5
+  leftHandMaterial: {fileID: 2100000, guid: 1ff3d260b71621d4fb5acd835459ef5b, type: 2}
 --- !u!4 &1543476063 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3183749884578473501, guid: c41358fbff49bc249bafc3e58a5a4bff, type: 3}
@@ -5205,6 +5311,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6341119541397085964, guid: c41358fbff49bc249bafc3e58a5a4bff, type: 3}
   m_PrefabInstance: {fileID: 522124889}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1837577432 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7186078889350648933, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
+  m_PrefabInstance: {fileID: 906102904}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1840177799
 GameObject:
   m_ObjectHideFlags: 0
@@ -5748,9 +5865,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoxingPads
       objectReference: {fileID: 0}
+    - target: {fileID: 338029286933424447, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1723911351708621364, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1723911351708621364, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
       propertyPath: m_LocalPosition.x
