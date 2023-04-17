@@ -19,32 +19,30 @@ public class PadsSystem : MonoBehaviour
     public TextMeshPro[] handTexts = new TextMeshPro[2];
     public Material[] handMaterials = new Material[2];
 
-    private GameObject[] padsArray;
-    private Material[] materialArray;
+    //private GameObject[] padsArray;
+    //private Material[] materialArray;
     //private TextMeshPro[] textArray;
    // private string[] textArray = new string[] { "1", "2", "X" };
     private string[] textArray1 = new string[] { "1", "2"};
     private string[] textArray2 = new string[] { "1", "X" };
+    private string startOrder;
+    private string finishOrder;
+    private string currentOrder;
+    private string currentArrOrder;
     private string[] textArraySelected;
     private Renderer LeftHandPad;
     private Renderer RightHandPad;
+    private ScoreSystem scoreSystem;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        padsArray = new GameObject[] { leftHandPad, rightHandPad };
-        materialArray = new Material[] { leftHandMaterial, rightHandMaterial };
-       // textArray = new TextMeshPro[] { leftHandText, rightHandText };
+       // padsArray = new GameObject[] { leftHandPad, rightHandPad };
+       // materialArray = new Material[] { leftHandMaterial, rightHandMaterial };
          LeftHandPad = leftHandPad.GetComponent<Renderer>();
          RightHandPad = rightHandPad.GetComponent<Renderer>();
-
-        // Set the new material
-        //    LeftHandPad.material = leftHandMaterial;
-        //   RightHandPad.material = leftHandMaterial;
-
-        //   leftHandText.SetText("1");
-        //    rightHandText.SetText("X");
+        scoreSystem = FindObjectOfType<ScoreSystem>();
 
         StartRandom();
     }
@@ -59,6 +57,18 @@ public class PadsSystem : MonoBehaviour
     {
         int randomNum = UnityEngine.Random.Range(0, 2);
         textArraySelected = randomNum == 0 ? textArray1 : textArray2;
+        if (randomNum == 0)
+        {
+            textArraySelected = textArray1;
+            startOrder = textArray1[0];
+            currentArrOrder = startOrder;
+            finishOrder = textArray1[textArray1.Length-1];
+        } else {
+            textArraySelected = textArray2;
+            startOrder = textArray2[0];
+            currentArrOrder = startOrder;
+            finishOrder = startOrder; // X 
+        }
         LeftHandRandomizer();
         RightHandRandomizer();
 
@@ -83,5 +93,53 @@ public class PadsSystem : MonoBehaviour
                 rightHandText.SetText(item);
             }
         }
+    }
+
+    void SetOrder(string order) {
+        currentOrder = order;
+    }
+    Boolean CheckOrder() {
+        if (currentOrder == finishOrder)
+        {
+            HitSuccess();
+            RoundWinFinializer();
+            return true;
+        }
+        else if (currentOrder == currentArrOrder && currentOrder != "X")
+        {
+            HitSuccess();
+            return true;
+        }
+        else {
+            HitFailure();
+            return false;
+        }
+     
+    }
+    void MoveOrder() { 
+        for (int i = 0; i < textArraySelected.Length; i++) {
+            if (currentArrOrder == textArraySelected[i] && i+1<= textArraySelected.Length)
+            {
+                currentArrOrder = textArraySelected[i + 1];
+            } 
+        } 
+    }
+
+    void HitSuccess() {
+        // 1. Add Score
+        // 2. Show green light effect
+        scoreSystem.AddScore(50);
+    }
+    void HitFailure()
+    {
+        // 1. take 1 life --> life-- if 0 --> lost -> RoundLostFinializer()
+        // 2. Show red light Effect -->
+    }
+    void RoundWinFinializer() { 
+    
+    }
+    void RoundLostFinializer()
+    {
+
     }
 }
