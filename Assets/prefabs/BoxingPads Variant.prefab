@@ -7,9 +7,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 442905076611960668, guid: 6d6dca3c9f69a60439a194c08fed3617, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053488937935450217, guid: 6d6dca3c9f69a60439a194c08fed3617, type: 3}
+      propertyPath: m_Size.x
+      value: 1.0000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053488937935450217, guid: 6d6dca3c9f69a60439a194c08fed3617, type: 3}
+      propertyPath: m_Size.y
+      value: 2.6568742
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053488937935450217, guid: 6d6dca3c9f69a60439a194c08fed3617, type: 3}
+      propertyPath: m_Center.x
+      value: 0.000000069924376
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053488937935450217, guid: 6d6dca3c9f69a60439a194c08fed3617, type: 3}
+      propertyPath: m_Center.y
+      value: 0.32843572
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053488937935450217, guid: 6d6dca3c9f69a60439a194c08fed3617, type: 3}
+      propertyPath: m_Center.z
+      value: -0.00000055939495
+      objectReference: {fileID: 0}
     - target: {fileID: 8064981199118035881, guid: 6d6dca3c9f69a60439a194c08fed3617, type: 3}
       propertyPath: m_Name
-      value: BoxingPads
+      value: BoxingPads Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8738155170513803524, guid: 6d6dca3c9f69a60439a194c08fed3617, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8984938878542616738, guid: 6d6dca3c9f69a60439a194c08fed3617, type: 3}
       propertyPath: m_RootOrder
