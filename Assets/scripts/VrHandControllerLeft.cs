@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class VrHandControllerLeft : MonoBehaviour
@@ -8,10 +9,11 @@ public class VrHandControllerLeft : MonoBehaviour
     public Transform gameObj;
     public float distance = 5f;
     public Material leftHandMaterial;
+    private PadsSystem padsSystem;
     // Start is called before the first frame update
     void Start()
     {
-
+        padsSystem = FindObjectOfType<PadsSystem>();
     }
 
     // Update is called once per frame
@@ -22,16 +24,17 @@ public class VrHandControllerLeft : MonoBehaviour
         Debug.DrawRay(transform.position, transform.forward * distance, Color.blue);
         if (Physics.Raycast(transform.position, transform.forward * distance, out hit, distance, layer))
         {
-            Debug.Log("something hit");
+            GameObject parentObject = hit.transform.gameObject;
             Material material = hit.collider.gameObject.GetComponent<Renderer>().material; /// check if color matches hand color --> sucess : erorr red light lost point
-            if (material == leftHandMaterial) {
-                //CheckOrder()
+            if (material.name.Contains(leftHandMaterial.name) ) {
+                GameObject childTextObject = parentObject.transform.Find("TextHand").gameObject;
+                Debug.Log(childTextObject.GetComponent<TextMeshPro>().text);
+                padsSystem.SetOrder(childTextObject.GetComponent<TextMeshPro>().text);
+                padsSystem.CheckOrder();
+            
             } else {
-            //HitFaliure()
+                padsSystem.HitFailure();
             }
-            Debug.Log(material);
-          //  Destroy(hit.transform.gameObject);
-     
         }
     }
 }

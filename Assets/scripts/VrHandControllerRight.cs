@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class VrHandControllerRight : MonoBehaviour
@@ -9,34 +10,35 @@ public class VrHandControllerRight : MonoBehaviour
     public float distance = 5f;
 
     public Material rightHandMaterial;
+    private PadsSystem padsSystem;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        padsSystem = FindObjectOfType<PadsSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
         RaycastHit hit;
-        //Debug.DrawLine(gameObj.position, new Vector3(gameObj.position.x, gameObj.position.y, 10), Color.yellow);
-        Debug.DrawRay(transform.position, transform.forward * distance, Color.red);
+        Debug.DrawRay(transform.position, transform.forward * distance, Color.blue);
         if (Physics.Raycast(transform.position, transform.forward * distance, out hit, distance, layer))
         {
-            Debug.Log("something hit");
+            GameObject parentObject = hit.transform.gameObject;
             Material material = hit.collider.gameObject.GetComponent<Renderer>().material; /// check if color matches hand color --> sucess : erorr red light lost point
-            if (material == rightHandMaterial)
+            if (material.name.Contains(rightHandMaterial.name))
             {
-                //CheckOrder()
+                GameObject childTextObject = parentObject.transform.Find("TextHand").gameObject;
+                Debug.Log(childTextObject.GetComponent<TextMeshPro>().text);
+                padsSystem.SetOrder(childTextObject.GetComponent<TextMeshPro>().text);
+                padsSystem.CheckOrder();
             }
             else
             {
-                //HitFaliure()
+                padsSystem.HitFailure();
             }
-            Debug.Log(material);
-            //Destroy(hit.transform.gameObject);
-           
+
         }
     }
 }

@@ -95,10 +95,10 @@ public class PadsSystem : MonoBehaviour
         }
     }
 
-    void SetOrder(string order) {
+    public void SetOrder(string order) {
         currentOrder = order;
     }
-    Boolean CheckOrder() {
+    public Boolean CheckOrder() {
         if (currentOrder == finishOrder)
         {
             HitSuccess();
@@ -125,15 +125,21 @@ public class PadsSystem : MonoBehaviour
         } 
     }
 
-    void HitSuccess() {
+    public void HitSuccess() {
         // 1. Add Score
         // 2. Show green light effect
         scoreSystem.AddScore(50);
+        // set Next
+        MoveOrder();
     }
-    void HitFailure()
+    public void HitFailure()
     {
         // 1. take 1 life --> life-- if 0 --> lost -> RoundLostFinializer()
         // 2. Show red light Effect -->
+        scoreSystem.LessLife();
+        if (scoreSystem.NoLifeChecker()) { // true if 0 lives
+            RoundLostFinializer();
+        }
     }
     void RoundWinFinializer() { 
     
@@ -141,5 +147,40 @@ public class PadsSystem : MonoBehaviour
     void RoundLostFinializer()
     {
 
+    }
+    
+    void LeftPadHitAnimation()
+    {
+
+    }
+    void RightPadHitAnimation()
+    {
+
+    }
+
+    void LeftPadFailAnimation()
+    {
+
+    }
+    void RightPadFailAnimation()
+    {
+
+    }
+
+    void LeftPadActivator()
+    {
+
+    }
+
+    void RightPadActivator() { 
+    }
+
+    void LeftPadDeactivator()
+    {
+
+    }
+    void RightPadDeactivator()
+    {
+        //leftHandPad
     }
 }
