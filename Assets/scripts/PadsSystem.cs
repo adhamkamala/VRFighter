@@ -169,18 +169,20 @@ public class PadsSystem : MonoBehaviour
 
     void LeftPadActivator()
     {
-
+        leftHandPad.layer = LayerMask.NameToLayer("enemylayer");
     }
 
-    void RightPadActivator() { 
+    void RightPadActivator() {
+        rightHandPad.layer = LayerMask.NameToLayer("enemylayer");
     }
 
     void LeftPadDeactivator()
     {
-
+        leftHandPad.layer = LayerMask.NameToLayer("Default");
     }
     void RightPadDeactivator()
     {
         //leftHandPad
+        rightHandPad.layer = LayerMask.NameToLayer("Default");
     }
 }
