@@ -11,6 +11,7 @@ public class PadsSystem : MonoBehaviour
 
     public Material leftHandMaterial;
     public Material rightHandMaterial;
+    public Material PadsDeactivateMaterial;
 
     public TextMeshPro leftHandText;
     public TextMeshPro rightHandText;
@@ -33,7 +34,17 @@ public class PadsSystem : MonoBehaviour
     private Renderer LeftHandPad;
     private Renderer RightHandPad;
     private ScoreSystem scoreSystem;
-
+    private Light leftHandLight;
+    private Light rightHandLight;
+    private int blinkCount = 0;
+    public int numBlinks = 2;
+     public enum HandType
+    {
+        LeftHand,
+        RightHand,
+        None
+    }
+    private HandType currentHandType;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +53,11 @@ public class PadsSystem : MonoBehaviour
        // materialArray = new Material[] { leftHandMaterial, rightHandMaterial };
          LeftHandPad = leftHandPad.GetComponent<Renderer>();
          RightHandPad = rightHandPad.GetComponent<Renderer>();
+         leftHandLight = LeftHandPad.GetComponent<Light>();
+         rightHandLight = RightHandPad.GetComponent<Light>();
+
         scoreSystem = FindObjectOfType<ScoreSystem>();
+       
 
         StartRandom();
     }
@@ -98,6 +113,10 @@ public class PadsSystem : MonoBehaviour
     public void SetOrder(string order) {
         currentOrder = order;
     }
+    public void SetHandType(HandType handType) {
+
+        currentHandType = handType;
+    }
     public Boolean CheckOrder() {
         if (currentOrder == finishOrder)
         {
@@ -116,11 +135,13 @@ public class PadsSystem : MonoBehaviour
         }
      
     }
-    void MoveOrder() { 
+    void MoveOrder() {
+
         for (int i = 0; i < textArraySelected.Length; i++) {
-            if (currentArrOrder == textArraySelected[i] && i+1<= textArraySelected.Length)
+            if (currentArrOrder == textArraySelected[i] && i+1 < textArraySelected.Length)
             {
                 currentArrOrder = textArraySelected[i + 1];
+                break;
             } 
         } 
     }
@@ -128,43 +149,125 @@ public class PadsSystem : MonoBehaviour
     public void HitSuccess() {
         // 1. Add Score
         // 2. Show green light effect
-        scoreSystem.AddScore(50);
         // set Next
+        if (currentHandType == HandType.LeftHand)        // which hand -->  LeftPadHitAnimation(); + LeftPadDeactivator or  RightPadHitAnimation(); + RightPadDeactivator
+        {
+            LeftPadHitAnimation();
+            LeftPadDeactivator();
+        }
+        else if (currentHandType == HandType.RightHand)
+        {
+            RightPadHitAnimation();
+            RightPadDeactivator();
+        }
+        else { 
+            //
+        }
+        scoreSystem.AddScore(50);
         MoveOrder();
     }
     public void HitFailure()
     {
         // 1. take 1 life --> life-- if 0 --> lost -> RoundLostFinializer()
         // 2. Show red light Effect -->
+        // which hand --> LeftPadFailAnimation or RightPadFailAnimation
         scoreSystem.LessLife();
         if (scoreSystem.NoLifeChecker()) { // true if 0 lives
             RoundLostFinializer();
         }
+        if (currentHandType == HandType.LeftHand)       // which hand --> LeftPadFailAnimation or RightPadFailAnimation
+        {
+            LeftPadFailAnimation();
+        }
+        else if (currentHandType == HandType.RightHand)
+        {
+            RightPadFailAnimation();
+        }
+        else
+        {
+            //
+        }
     }
-    void RoundWinFinializer() { 
+    void RoundWinFinializer() {
+        Debug.Log("U Won the Round");
     
     }
     void RoundLostFinializer()
     {
-
+        Debug.Log("U Lost the Round");
     }
     
     void LeftPadHitAnimation()
     {
-
+        leftHandLight.color = Color.green;
+        StartCoroutine(BlinkCoroutineLeftPadHit());
+    }
+    private IEnumerator BlinkCoroutineLeftPadHit()
+    {
+        while (blinkCount < numBlinks)
+        {
+            leftHandLight.intensity = 200f;
+            yield return new WaitForSeconds(0.1f);
+            leftHandLight.intensity = 0;
+            yield return new WaitForSeconds(0.1f);
+            blinkCount++;
+        }
+        leftHandLight.intensity = 0;
+        blinkCount = 0;
     }
     void RightPadHitAnimation()
     {
-
+        rightHandLight.color = Color.green;
+        StartCoroutine(BlinkCoroutineRightPadHit());
     }
-
+    private IEnumerator BlinkCoroutineRightPadHit()
+    {
+        while (blinkCount < numBlinks)
+        {
+            leftHandLight.intensity = 200f;
+            yield return new WaitForSeconds(0.1f);
+            leftHandLight.intensity = 0;
+            yield return new WaitForSeconds(0.1f);
+            blinkCount++;
+        }
+        leftHandLight.intensity = 0;
+        blinkCount = 0;
+    }
     void LeftPadFailAnimation()
     {
-
+        leftHandLight.color = Color.red;
+        StartCoroutine(BlinkCoroutineLeftPadFail());
+    }
+    private IEnumerator BlinkCoroutineLeftPadFail()
+    {
+        while (blinkCount < numBlinks)
+        {
+            leftHandLight.intensity = 200f;
+            yield return new WaitForSeconds(0.1f);
+            leftHandLight.intensity = 0;
+            yield return new WaitForSeconds(0.1f);
+            blinkCount++;
+        }
+        leftHandLight.intensity = 0;
+        blinkCount = 0;
     }
     void RightPadFailAnimation()
     {
-
+        rightHandLight.color = Color.red;
+        StartCoroutine(BlinkCoroutineRightPadFail());
+    }
+    private IEnumerator BlinkCoroutineRightPadFail()
+    {
+        while (blinkCount < numBlinks)
+        {
+            leftHandLight.intensity = 200f;
+            yield return new WaitForSeconds(0.1f);
+            leftHandLight.intensity = 0;
+            yield return new WaitForSeconds(0.1f);
+            blinkCount++;
+        }
+        leftHandLight.intensity = 0;
+        blinkCount = 0;
     }
 
     void LeftPadActivator()
@@ -179,10 +282,12 @@ public class PadsSystem : MonoBehaviour
     void LeftPadDeactivator()
     {
         leftHandPad.layer = LayerMask.NameToLayer("Default");
+        LeftHandPad.material = PadsDeactivateMaterial;
     }
     void RightPadDeactivator()
     {
-        //leftHandPad
+        //rightHandPad
         rightHandPad.layer = LayerMask.NameToLayer("Default");
+        RightHandPad.material = PadsDeactivateMaterial;
     }
 }

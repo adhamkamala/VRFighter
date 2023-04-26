@@ -32,6 +32,7 @@ public class VrHandControllerRight : MonoBehaviour
                 GameObject childTextObject = parentObject.transform.Find("TextHand").gameObject;
                 Debug.Log(childTextObject.GetComponent<TextMeshPro>().text);
                 padsSystem.SetOrder(childTextObject.GetComponent<TextMeshPro>().text);
+                padsSystem.SetHandType(PadsSystem.HandType.RightHand);
                 padsSystem.CheckOrder();
             }
             else
