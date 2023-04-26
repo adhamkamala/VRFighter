@@ -45,6 +45,13 @@ public class PadsSystem : MonoBehaviour
         None
     }
     private HandType currentHandType;
+    public enum PadType
+    {
+        LeftPad,
+        RightPad,
+        None
+    }
+    private PadType currentPadType;
 
     // Start is called before the first frame update
     void Start()
@@ -117,6 +124,11 @@ public class PadsSystem : MonoBehaviour
 
         currentHandType = handType;
     }
+    public void SetPadType(PadType padType)
+    {
+
+        currentPadType = padType;
+    }
     public Boolean CheckOrder() {
         if (currentOrder == finishOrder)
         {
@@ -150,17 +162,29 @@ public class PadsSystem : MonoBehaviour
         // 1. Add Score
         // 2. Show green light effect
         // set Next
-        if (currentHandType == HandType.LeftHand)        // which hand -->  LeftPadHitAnimation(); + LeftPadDeactivator or  RightPadHitAnimation(); + RightPadDeactivator
+        //if (currentHandType == HandType.LeftHand)        // which hand -->  LeftPadHitAnimation(); + LeftPadDeactivator or  RightPadHitAnimation(); + RightPadDeactivator
+        //{
+        //    LeftPadHitAnimation();
+        //    LeftPadDeactivator();
+        //}
+        //else if (currentHandType == HandType.RightHand)
+        //{
+        //    RightPadHitAnimation();
+        //    RightPadDeactivator();
+        //}
+        //else { 
+            
+        //}
+        if (currentPadType == PadType.LeftPad)
         {
             LeftPadHitAnimation();
             LeftPadDeactivator();
-        }
-        else if (currentHandType == HandType.RightHand)
-        {
+        } else if (currentPadType == PadType.RightPad) {
             RightPadHitAnimation();
             RightPadDeactivator();
         }
-        else { 
+        else
+        {
             //
         }
         scoreSystem.AddScore(50);
@@ -175,11 +199,23 @@ public class PadsSystem : MonoBehaviour
         if (scoreSystem.NoLifeChecker()) { // true if 0 lives
             RoundLostFinializer();
         }
-        if (currentHandType == HandType.LeftHand)       // which hand --> LeftPadFailAnimation or RightPadFailAnimation
+        //if (currentHandType == HandType.LeftHand)       // which hand --> LeftPadFailAnimation or RightPadFailAnimation
+        //{
+        //    LeftPadFailAnimation();
+        //}
+        //else if (currentHandType == HandType.RightHand)
+        //{
+        //    RightPadFailAnimation();
+        //}
+        //else
+        //{
+        //    //
+        //}
+        if (currentPadType == PadType.LeftPad)       // which hand --> LeftPadFailAnimation or RightPadFailAnimation
         {
             LeftPadFailAnimation();
         }
-        else if (currentHandType == HandType.RightHand)
+        else if (currentPadType == PadType.RightPad)
         {
             RightPadFailAnimation();
         }
@@ -224,9 +260,9 @@ public class PadsSystem : MonoBehaviour
     {
         while (blinkCount < numBlinks)
         {
-            leftHandLight.intensity = 200f;
+            rightHandLight.intensity = 200f;
             yield return new WaitForSeconds(0.1f);
-            leftHandLight.intensity = 0;
+            rightHandLight.intensity = 0;
             yield return new WaitForSeconds(0.1f);
             blinkCount++;
         }
@@ -260,9 +296,9 @@ public class PadsSystem : MonoBehaviour
     {
         while (blinkCount < numBlinks)
         {
-            leftHandLight.intensity = 200f;
+            rightHandLight.intensity = 200f;
             yield return new WaitForSeconds(0.1f);
-            leftHandLight.intensity = 0;
+            rightHandLight.intensity = 0;
             yield return new WaitForSeconds(0.1f);
             blinkCount++;
         }

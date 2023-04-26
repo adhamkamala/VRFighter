@@ -10,6 +10,8 @@ public class VrHandControllerLeft : MonoBehaviour
     public float distance = 5f;
     public Material leftHandMaterial;
     private PadsSystem padsSystem;
+    private string rightPadName = "RightHandIndicator";
+    private string leftPadName = "LeftHandIndicator";
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +33,24 @@ public class VrHandControllerLeft : MonoBehaviour
                 Debug.Log(childTextObject.GetComponent<TextMeshPro>().text);
                 padsSystem.SetOrder(childTextObject.GetComponent<TextMeshPro>().text);
                 padsSystem.SetHandType(PadsSystem.HandType.LeftHand);
+                if (hit.collider.gameObject.name.Contains(leftPadName))
+                {
+                    padsSystem.SetPadType(PadsSystem.PadType.LeftPad);
+                } else if (hit.collider.gameObject.name.Contains(rightPadName))
+                {
+                    padsSystem.SetPadType(PadsSystem.PadType.RightPad);
+                }
                 padsSystem.CheckOrder();
             
             } else {
+                if (hit.collider.gameObject.name.Contains(leftPadName))
+                {
+                    padsSystem.SetPadType(PadsSystem.PadType.LeftPad);
+                }
+                else if (hit.collider.gameObject.name.Contains(rightPadName))
+                {
+                    padsSystem.SetPadType(PadsSystem.PadType.RightPad);
+                }
                 padsSystem.HitFailure();
             }
         }

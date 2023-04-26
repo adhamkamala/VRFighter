@@ -3030,6 +3030,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7888610695528730058, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
+      propertyPath: m_Name
+      value: RightHandIndicator
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}
 --- !u!1 &911126701
