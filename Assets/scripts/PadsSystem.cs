@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
+
 
 public class PadsSystem : MonoBehaviour
 {
@@ -20,6 +23,7 @@ public class PadsSystem : MonoBehaviour
     public TextMeshPro[] handTexts = new TextMeshPro[2];
     public Material[] handMaterials = new Material[2];
     public Animator animator;
+    public Text RoundTimeText;
 
     //private GameObject[] padsArray;
     //private Material[] materialArray;
@@ -238,14 +242,14 @@ public class PadsSystem : MonoBehaviour
             //
         }
     }
-    void RoundWinFinializer() {
+    void RoundWinFinializer() { 
         Debug.Log("U Won the Round");
         animator.Play("TainerMovePadTrick2End");
         TimerIntiator();
         StopRoundTimer();
 
     }
-    void RoundLostFinializer()
+    void RoundLostFinializer() // 1 life less if tound time out??
     {
         Debug.Log("U Lost the Round");
         RightPadDeactivator();
@@ -310,6 +314,7 @@ public class PadsSystem : MonoBehaviour
         // Update the timer text with the remaining time
         timerRoundText = Mathf.RoundToInt(timeRoundRemaining).ToString();
         Debug.Log("Time Remaining for Round: " + timerRoundText);
+        RoundTimeText.text = timerRoundText;
         // If the time runs out, stop the timer and do something
         if (timeRoundRemaining <= 0.0f)
         {
