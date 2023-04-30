@@ -19,11 +19,12 @@ public class PadsSystem : MonoBehaviour
     public GameObject[] handIndicators = new GameObject[2];
     public TextMeshPro[] handTexts = new TextMeshPro[2];
     public Material[] handMaterials = new Material[2];
+    public Animator animator;
 
     //private GameObject[] padsArray;
     //private Material[] materialArray;
     //private TextMeshPro[] textArray;
-   // private string[] textArray = new string[] { "1", "2", "X" };
+    // private string[] textArray = new string[] { "1", "2", "X" };
     private string[] textArray1 = new string[] { "1", "2"};
     private string[] textArray2 = new string[] { "1", "X" };
     private string startOrder;
@@ -38,7 +39,10 @@ public class PadsSystem : MonoBehaviour
     private Light rightHandLight;
     private int blinkCount = 0;
     public int numBlinks = 2;
-     public enum HandType
+    public float timeRemaining = 10.0f;
+    public string timerText;
+    private bool timerActive = false;
+    public enum HandType
     {
         LeftHand,
         RightHand,
@@ -62,17 +66,18 @@ public class PadsSystem : MonoBehaviour
          RightHandPad = rightHandPad.GetComponent<Renderer>();
          leftHandLight = LeftHandPad.GetComponent<Light>();
          rightHandLight = RightHandPad.GetComponent<Light>();
-
-        scoreSystem = FindObjectOfType<ScoreSystem>();
-       
-
-        StartRandom();
+         scoreSystem = FindObjectOfType<ScoreSystem>();
+        RoundIntiator();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (timerActive)
+        {
+            UpdateTimer();
+        }
+     
     }
 
     void StartRandom()
@@ -226,13 +231,60 @@ public class PadsSystem : MonoBehaviour
     }
     void RoundWinFinializer() {
         Debug.Log("U Won the Round");
-    
+        animator.Play("TainerMovePadTrick2End");
+        timerActive = true;
+
     }
     void RoundLostFinializer()
     {
         Debug.Log("U Lost the Round");
     }
+
+    void RoundIntiator()
+    {
+        RightPadActivator();
+        LeftPadActivator();
+        StartRandom();
+        animator.Play("TainerMovePadTrick2Start");
+    }
     
+    void TimerIntiator() { 
+    
+    }
+
+
+
+    private void UpdateTimer()
+    {
+        // Subtract the time elapsed since the last frame from the time remaining
+        timeRemaining -= Time.deltaTime;
+
+        // Update the timer text with the remaining time
+        timerText = Mathf.RoundToInt(timeRemaining).ToString();
+        Debug.Log("New ROund begins in: " + timerText);
+        // If the time runs out, stop the timer and do something
+        if (timeRemaining <= 0.0f)
+        {
+            StopTimer();
+            DoSomething();
+        }
+    }
+
+    private void StopTimer()
+    {
+        // Stop the timer by setting the time remaining to 0
+        timerActive = false;
+        timeRemaining = 10.0f;
+    }
+
+    private void DoSomething()
+    {
+        // Do something when the timer runs out
+      RoundIntiator();
+    }
+
+
+
     void LeftPadHitAnimation()
     {
         leftHandLight.color = Color.green;
