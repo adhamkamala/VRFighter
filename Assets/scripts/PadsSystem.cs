@@ -42,6 +42,10 @@ public class PadsSystem : MonoBehaviour
     public float timeRemaining = 10.0f;
     public string timerText;
     private bool timerActive = false;
+
+    public float timeRoundRemaining = 10.0f;
+    public string timerRoundText;
+    private bool timerRoundActive = false;
     public enum HandType
     {
         LeftHand,
@@ -76,6 +80,11 @@ public class PadsSystem : MonoBehaviour
         if (timerActive)
         {
             UpdateTimer();
+        }
+
+        if (timerRoundActive)
+        {
+            UpdateRoundTimer();
         }
      
     }
@@ -232,12 +241,17 @@ public class PadsSystem : MonoBehaviour
     void RoundWinFinializer() {
         Debug.Log("U Won the Round");
         animator.Play("TainerMovePadTrick2End");
-        timerActive = true;
+        TimerIntiator();
+        StopRoundTimer();
 
     }
     void RoundLostFinializer()
     {
         Debug.Log("U Lost the Round");
+        RightPadDeactivator();
+        LeftPadDeactivator();
+        animator.Play("TainerMovePadTrick2End");
+        TimerIntiator();
     }
 
     void RoundIntiator()
@@ -246,10 +260,15 @@ public class PadsSystem : MonoBehaviour
         LeftPadActivator();
         StartRandom();
         animator.Play("TainerMovePadTrick2Start");
+        TimerRoundIntiator();
     }
     
-    void TimerIntiator() { 
-    
+    void TimerIntiator() {
+        timerActive = true;
+    }
+    void TimerRoundIntiator()
+    {
+        timerRoundActive = true;
     }
 
 
@@ -283,7 +302,35 @@ public class PadsSystem : MonoBehaviour
       RoundIntiator();
     }
 
+    private void UpdateRoundTimer()
+    {
+        // Subtract the time elapsed since the last frame from the time remaining
+        timeRoundRemaining -= Time.deltaTime;
 
+        // Update the timer text with the remaining time
+        timerRoundText = Mathf.RoundToInt(timeRoundRemaining).ToString();
+        Debug.Log("Time Remaining for Round: " + timerRoundText);
+        // If the time runs out, stop the timer and do something
+        if (timeRoundRemaining <= 0.0f)
+        {
+            StopRoundTimer();
+            DoRoundSomething();
+        }
+    }
+
+    private void StopRoundTimer()
+    {
+        // Stop the timer by setting the time remaining to 0
+        timerRoundActive = false;
+        timeRoundRemaining = 10.0f;
+    }
+
+    private void DoRoundSomething()
+    {
+        // Do something when the timer runs out
+        // RoundIntiator();
+        RoundLostFinializer();
+    }
 
     void LeftPadHitAnimation()
     {
