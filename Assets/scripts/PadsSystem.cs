@@ -43,7 +43,7 @@ public class PadsSystem : MonoBehaviour
     private Light rightHandLight;
     private int blinkCount = 0;
     public int numBlinks = 2;
-    public float timeRemaining = 10.0f;
+    public float timeRemaining = 5.0f;
     public string timerText;
     private bool timerActive = false;
 
@@ -148,6 +148,7 @@ public class PadsSystem : MonoBehaviour
         currentPadType = padType;
     }
     public Boolean CheckOrder() {
+        Debug.Log(currentOrder + " " + finishOrder);
         if (currentOrder == finishOrder)
         {
             HitSuccess();
@@ -297,7 +298,7 @@ public class PadsSystem : MonoBehaviour
     {
         // Stop the timer by setting the time remaining to 0
         timerActive = false;
-        timeRemaining = 10.0f;
+        timeRemaining = 5.0f;
     }
 
     private void DoSomething()
