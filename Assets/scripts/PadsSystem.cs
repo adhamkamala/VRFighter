@@ -49,6 +49,7 @@ public class PadsSystem : MonoBehaviour
     public float timeRemaining = 5.0f;
     public string timerText;
     private bool timerActive = false;
+    private bool previousOrderDone = false;
     private float roundSpeed = 0f;
     private float animatorSpeed = 0.2f;
 
@@ -110,15 +111,17 @@ public class PadsSystem : MonoBehaviour
             startOrder = textArray1[0];
             currentArrOrder = startOrder;
             finishOrder = textArray1[textArray1.Length-1];
+            previousOrderDone = false;
         } else {
             textArraySelected = textArray2;
             startOrder = textArray2[0];
             currentArrOrder = startOrder;
             finishOrder = startOrder; // X 
+            previousOrderDone = true;
         }
         LeftHandRandomizer();
         RightHandRandomizer();
-
+        Debug.Log("First set: "+currentOrder + " finishorder:" + finishOrder);
     }
     
     void LeftHandRandomizer()
@@ -156,7 +159,7 @@ public class PadsSystem : MonoBehaviour
     }
     public Boolean CheckOrder() {
         Debug.Log(currentOrder + " " + finishOrder);
-        if (currentOrder == finishOrder)
+        if (currentOrder == finishOrder && previousOrderDone)
         {
             HitSuccess();
             RoundWinFinializer();
@@ -165,6 +168,7 @@ public class PadsSystem : MonoBehaviour
         else if (currentOrder == currentArrOrder && currentOrder != "X")
         {
             HitSuccess();
+            previousOrderDone = true;
             return true;
         }
         else {
@@ -299,7 +303,7 @@ public class PadsSystem : MonoBehaviour
 
         // Update the timer text with the remaining time
         timerText = Mathf.RoundToInt(timeRemaining).ToString();
-        Debug.Log("New Round begins in: " + timerText);
+     //   Debug.Log("New Round begins in: " + timerText);
         // If the time runs out, stop the timer and do something
         if (timeRemaining <= 0.0f)
         {
@@ -328,7 +332,7 @@ public class PadsSystem : MonoBehaviour
 
         // Update the timer text with the remaining time
         timerRoundText = Mathf.RoundToInt(timeRoundRemaining).ToString();
-        Debug.Log("Time Remaining for Round: " + timerRoundText);
+      //  Debug.Log("Time Remaining for Round: " + timerRoundText);
         RoundTimeText.text = "Timer: "+timerRoundText;
         // If the time runs out, stop the timer and do something
         if (timeRoundRemaining <= 0.0f)
