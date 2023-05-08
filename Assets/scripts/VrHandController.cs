@@ -8,6 +8,7 @@ public class VrHandController : MonoBehaviour
     public Transform gameObj;
     public float distance = 5f;
     private ScoreSystem scoreSystem;
+
     // Start is called before the first frame update
     void Start()
     {

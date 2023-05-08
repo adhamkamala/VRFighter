@@ -48,6 +48,7 @@ public class VrHandControllerRight : MonoBehaviour
             }
             else
             {
+                padsSystem.SetHandType(PadsSystem.HandType.RightHand);
                 if (hit.collider.gameObject.name.Contains(leftPadName))
                 {
                     padsSystem.SetPadType(PadsSystem.PadType.LeftPad);

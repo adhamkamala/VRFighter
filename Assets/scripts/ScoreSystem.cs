@@ -9,10 +9,12 @@ public class ScoreSystem : MonoBehaviour
     public int score = 0;
     public int lives = 6;
     public int maxScore;
+    public Text LifeText;
     // Start is called before the first frame update
     void Start()
     {
         score = 0;
+        UpdateLife();
     }
 
      public void AddScore(int newScore)
@@ -28,6 +30,13 @@ public class ScoreSystem : MonoBehaviour
     public void LessLife() //2
     {
         lives--;
+        UpdateLife();
+    }
+
+    private void UpdateLife()
+    {
+        LifeText.text = "Life: " + lives;
+
     }
 
     public bool NoLifeChecker() { //1

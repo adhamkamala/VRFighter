@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 
 public class PadsSystem : MonoBehaviour
@@ -24,6 +25,7 @@ public class PadsSystem : MonoBehaviour
     public Material[] handMaterials = new Material[2];
     public Animator animator;
     public Text RoundTimeText;
+   
 
     //private GameObject[] padsArray;
     //private Material[] materialArray;
@@ -39,6 +41,7 @@ public class PadsSystem : MonoBehaviour
     private Renderer LeftHandPad;
     private Renderer RightHandPad;
     private ScoreSystem scoreSystem;
+    public XRHandController XRHandController;
     private Light leftHandLight;
     private Light rightHandLight;
     private int blinkCount = 0;
@@ -76,6 +79,8 @@ public class PadsSystem : MonoBehaviour
          rightHandLight = RightHandPad.GetComponent<Light>();
          scoreSystem = FindObjectOfType<ScoreSystem>();
         RoundIntiator();
+      //  XRControlle rManager controllerManager = FindObjectOfType<XRControllerManager>();
+
     }
 
     // Update is called once per frame
@@ -181,19 +186,14 @@ public class PadsSystem : MonoBehaviour
         // 1. Add Score
         // 2. Show green light effect
         // set Next
-        //if (currentHandType == HandType.LeftHand)        // which hand -->  LeftPadHitAnimation(); + LeftPadDeactivator or  RightPadHitAnimation(); + RightPadDeactivator
-        //{
-        //    LeftPadHitAnimation();
-        //    LeftPadDeactivator();
-        //}
-        //else if (currentHandType == HandType.RightHand)
-        //{
-        //    RightPadHitAnimation();
-        //    RightPadDeactivator();
-        //}
-        //else { 
-            
-        //}
+        if (currentHandType == HandType.LeftHand)        // which hand -->  LeftPadHitAnimation(); + LeftPadDeactivator or  RightPadHitAnimation(); + RightPadDeactivator
+        {
+            XRHandController.HapticLeftSuccess();
+        }
+        else if (currentHandType == HandType.RightHand)
+        {
+            XRHandController.HapticRightSuccess();
+        }
         if (currentPadType == PadType.LeftPad)
         {
             LeftPadHitAnimation();
@@ -215,37 +215,35 @@ public class PadsSystem : MonoBehaviour
         // 2. Show red light Effect -->
         // which hand --> LeftPadFailAnimation or RightPadFailAnimation
         scoreSystem.LessLife();
-        if (scoreSystem.NoLifeChecker()) { // true if 0 lives
-            RoundLostFinializer();
-        }
-        //if (currentHandType == HandType.LeftHand)       // which hand --> LeftPadFailAnimation or RightPadFailAnimation
-        //{
-        //    LeftPadFailAnimation();
-        //}
-        //else if (currentHandType == HandType.RightHand)
-        //{
-        //    RightPadFailAnimation();
-        //}
-        //else
-        //{
-        //    //
-        //}
+
         if (currentPadType == PadType.LeftPad)       // which hand --> LeftPadFailAnimation or RightPadFailAnimation
         {
             LeftPadFailAnimation();
+            LeftPadDeactivator();
         }
         else if (currentPadType == PadType.RightPad)
         {
             RightPadFailAnimation();
+            RightPadDeactivator();
         }
-        else
+
+        if (scoreSystem.NoLifeChecker()) { // true if 0 lives
+            RoundLostFinializer();
+        }
+        if (currentHandType == HandType.LeftHand)        // which hand -->  LeftPadHitAnimation(); + LeftPadDeactivator or  RightPadHitAnimation(); + RightPadDeactivator
         {
-            //
+            XRHandController.HapticLeftFail();
         }
+        else if (currentHandType == HandType.RightHand)
+        {
+            XRHandController.HapticRightFail();
+        }
+    
     }
     void RoundWinFinializer() { 
         Debug.Log("U Won the Round");
         animator.Play("TainerMovePadTrick2End");
+        animator.speed = 1f;
         TimerIntiator();
         StopRoundTimer();
 
@@ -315,7 +313,7 @@ public class PadsSystem : MonoBehaviour
         // Update the timer text with the remaining time
         timerRoundText = Mathf.RoundToInt(timeRoundRemaining).ToString();
         Debug.Log("Time Remaining for Round: " + timerRoundText);
-        RoundTimeText.text = timerRoundText;
+        RoundTimeText.text = "Timer: "+timerRoundText;
         // If the time runs out, stop the timer and do something
         if (timeRoundRemaining <= 0.0f)
         {
