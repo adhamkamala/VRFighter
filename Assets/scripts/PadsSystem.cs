@@ -49,6 +49,8 @@ public class PadsSystem : MonoBehaviour
     public float timeRemaining = 5.0f;
     public string timerText;
     private bool timerActive = false;
+    private float roundSpeed = 0f;
+    private float animatorSpeed = 0.2f;
 
     public float timeRoundRemaining = 10.0f;
     public string timerRoundText;
@@ -219,12 +221,12 @@ public class PadsSystem : MonoBehaviour
         if (currentPadType == PadType.LeftPad)       // which hand --> LeftPadFailAnimation or RightPadFailAnimation
         {
             LeftPadFailAnimation();
-            LeftPadDeactivator();
+           LeftPadTempDeactivator();
         }
         else if (currentPadType == PadType.RightPad)
         {
             RightPadFailAnimation();
-            RightPadDeactivator();
+            RightPadTempDeactivator();
         }
 
         if (scoreSystem.NoLifeChecker()) { // true if 0 lives
@@ -243,7 +245,10 @@ public class PadsSystem : MonoBehaviour
     void RoundWinFinializer() { 
         Debug.Log("U Won the Round");
         animator.Play("TainerMovePadTrick2End");
-        animator.speed = 1f;
+        RightPadDeactivator();
+        LeftPadDeactivator();
+        RoundSpeedUp();
+       // animator.speed = 1f;
         TimerIntiator();
         StopRoundTimer();
 
@@ -253,8 +258,18 @@ public class PadsSystem : MonoBehaviour
         Debug.Log("U Lost the Round");
         RightPadDeactivator();
         LeftPadDeactivator();
+        RoundSpeedUp();
         animator.Play("TainerMovePadTrick2End");
         TimerIntiator();
+    }
+
+   void RoundSpeedUp()
+    {
+        roundSpeed = roundSpeed - 0.5f;
+        timeRoundRemaining = 10f + roundSpeed;
+        animatorSpeed = animatorSpeed + 0.5f;
+        timeRemaining = timeRemaining + (roundSpeed * 1.2f);
+
     }
 
     void RoundIntiator()
@@ -262,6 +277,7 @@ public class PadsSystem : MonoBehaviour
         RightPadActivator();
         LeftPadActivator();
         StartRandom();
+        animator.speed = animatorSpeed;
         animator.Play("TainerMovePadTrick2Start");
         TimerRoundIntiator();
     }
@@ -283,7 +299,7 @@ public class PadsSystem : MonoBehaviour
 
         // Update the timer text with the remaining time
         timerText = Mathf.RoundToInt(timeRemaining).ToString();
-        Debug.Log("New ROund begins in: " + timerText);
+        Debug.Log("New Round begins in: " + timerText);
         // If the time runs out, stop the timer and do something
         if (timeRemaining <= 0.0f)
         {
@@ -326,7 +342,7 @@ public class PadsSystem : MonoBehaviour
     {
         // Stop the timer by setting the time remaining to 0
         timerRoundActive = false;
-        timeRoundRemaining = 10.0f;
+        timeRoundRemaining = 10f + roundSpeed;
     }
 
     private void DoRoundSomething()
@@ -428,5 +444,27 @@ public class PadsSystem : MonoBehaviour
         //rightHandPad
         rightHandPad.layer = LayerMask.NameToLayer("Default");
         RightHandPad.material = PadsDeactivateMaterial;
+    }
+
+    void LeftPadTempDeactivator()
+    {
+        StartCoroutine(LeftPadTempDeactivatorTimer());
+    }
+    void RightPadTempDeactivator()
+    {
+        StartCoroutine (RightPadTempDeactivatorTimer());
+    }
+    private IEnumerator LeftPadTempDeactivatorTimer()
+    {
+        leftHandPad.layer = LayerMask.NameToLayer("Default");
+        yield return new WaitForSeconds(1f);
+        leftHandPad.layer = LayerMask.NameToLayer("enemylayer");
+    }
+    private IEnumerator RightPadTempDeactivatorTimer()
+    {
+
+        rightHandPad.layer = LayerMask.NameToLayer("Default");
+        yield return new WaitForSeconds(1f);
+        rightHandPad.layer = LayerMask.NameToLayer("enemylayer");
     }
 }
