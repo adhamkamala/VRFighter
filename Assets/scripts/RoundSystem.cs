@@ -12,6 +12,8 @@ public class RoundSystem : MonoBehaviour
     public float timeNewRoundRemaining = 5.0f;
     public float timeRoundRemaining = 10.0f;
     public Text roundTimeText;
+    public Text newRoundTimeText;
+    public Text animationSpeedText;
 
     private float animatorSpeed = 0.2f;
     private bool timerRoundActive = false;
@@ -72,7 +74,20 @@ public class RoundSystem : MonoBehaviour
         timeRoundRemaining = 10f + roundSpeed;
         animatorSpeed = animatorSpeed + 0.5f;
         timeNewRoundRemaining = timeNewRoundRemaining + (roundSpeed * 1.2f);
+        animationSpeedText.text = "Animation Speed: " + animatorSpeed;
+        if (animatorSpeed >= 3.5f || timeNewRoundRemaining <=2)
+        {
+            ResetRoundSpeed();
+        }
 
+    }
+
+    void ResetRoundSpeed()
+    {
+        roundSpeed = 0;
+        timeRoundRemaining = 10f;
+        animatorSpeed  = 0.2f;
+        timeNewRoundRemaining = 5f;
     }
     IEnumerator RoundIntiatorCoroutine()
     {
@@ -100,6 +115,7 @@ public class RoundSystem : MonoBehaviour
     {
         timeNewRoundRemaining -= Time.deltaTime;
         timerNewRoundText = Mathf.RoundToInt(timeNewRoundRemaining).ToString();
+        newRoundTimeText.text= "New Round TImer: " + timerNewRoundText;
         if (timeNewRoundRemaining <= 0.0f)
         {
             StopNewRoundTimer();
@@ -120,14 +136,9 @@ public class RoundSystem : MonoBehaviour
 
     private void UpdateRoundTimer()
     {
-        // Subtract the time elapsed since the last frame from the time remaining
         timeRoundRemaining -= Time.deltaTime;
-
-        // Update the timer text with the remaining time
         timerRoundText = Mathf.RoundToInt(timeRoundRemaining).ToString();
-        //  Debug.Log("Time Remaining for Round: " + timerRoundText);
         roundTimeText.text = "Timer: " + timerRoundText;
-        // If the time runs out, stop the timer and do something
         if (timeRoundRemaining <= 0.0f)
         {
             StopRoundTimer();
@@ -137,7 +148,6 @@ public class RoundSystem : MonoBehaviour
 
     private void StopRoundTimer()
     {
-        // Stop the timer by setting the time remaining to 0
         timerRoundActive = false;
         timeRoundRemaining = 10f + roundSpeed;
     }
