@@ -95,12 +95,11 @@ public class PadsSystem : MonoBehaviour
         //LeftHandPad = leftHandPad.GetComponent<Renderer>();
         // random material --> which hand
         // random text --> [1,2,X]
-        leftHandPadRend.material = handMaterials[UnityEngine.Random.Range(0, handMaterials.Length)];
+      
         leftHandText.SetText(textArraySelected[UnityEngine.Random.Range(0, textArraySelected.Length)]);
     }
     void RightHandRandomizer()
     {
-        rightHandPadRend.material = handMaterials[UnityEngine.Random.Range(0, handMaterials.Length)];
         //rightHandText.SetText(textArraySelected[UnityEngine.Random.Range(0, textArraySelected.Length)]);
         foreach (var item in textArraySelected)
         {
@@ -290,9 +289,11 @@ public class PadsSystem : MonoBehaviour
     void LeftPadActivator()
     {
         leftHandPad.layer = LayerMask.NameToLayer("enemylayer");
+        leftHandPadRend.material = handMaterials[UnityEngine.Random.Range(0, handMaterials.Length)];
     }
     void RightPadActivator() {
         rightHandPad.layer = LayerMask.NameToLayer("enemylayer");
+        rightHandPadRend.material = handMaterials[UnityEngine.Random.Range(0, handMaterials.Length)];
     }
     void LeftPadDeactivator()
     {

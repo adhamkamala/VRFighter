@@ -14,6 +14,9 @@ public class RoundSystem : MonoBehaviour
     public Text roundTimeText;
     public Text newRoundTimeText;
     public Text animationSpeedText;
+    public Text roundTimeTextVr;
+    public Text newRoundTimeTextVr;
+    public Text animationSpeedTextVr;
 
     private float animatorSpeed = 0.2f;
     private bool timerRoundActive = false;
@@ -21,10 +24,12 @@ public class RoundSystem : MonoBehaviour
     private string timerNewRoundText;
     private string timerRoundText;
     private float roundSpeed = 0f;
+    private int animationCounter = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        setAnimatorText();
         padsSystem.Setup();
         padsSystem.DeactivateBothPads();
         StartRound();
@@ -56,6 +61,7 @@ public class RoundSystem : MonoBehaviour
         RoundSpeedUp();
         TimerNewRoundIntiator();
         StopRoundTimer();
+        animationCounter++;
 
 
     }
@@ -66,6 +72,7 @@ public class RoundSystem : MonoBehaviour
         RoundSpeedUp();
         animator.Play("TainerMovePadTrick2End");
         TimerNewRoundIntiator();
+        animationCounter++;
     }
     void RoundSpeedUp()
     {
@@ -74,12 +81,18 @@ public class RoundSystem : MonoBehaviour
         timeRoundRemaining = 10f + roundSpeed;
         animatorSpeed = animatorSpeed + 0.5f;
         timeNewRoundRemaining = timeNewRoundRemaining + (roundSpeed * 1.2f);
-        animationSpeedText.text = "Animation Speed: " + animatorSpeed;
+        setAnimatorText();
         if (animatorSpeed >= 3.5f || timeNewRoundRemaining <=2)
         {
             ResetRoundSpeed();
         }
 
+    }
+
+    void setAnimatorText()
+    {
+        animationSpeedText.text = "Animation Speed: " + animatorSpeed;
+        animationSpeedTextVr.text = "Animation Speed: " + animatorSpeed;
     }
 
     void ResetRoundSpeed()
@@ -92,9 +105,10 @@ public class RoundSystem : MonoBehaviour
     IEnumerator RoundIntiatorCoroutine()
     {
         padsSystem.StartRandomizePads();
+        animator.Rebind();  
         animator.speed = animatorSpeed;
         animator.Play("TainerMovePadTrick2Start");
-        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f || animator.IsInTransition(0))
         {
             yield return null;
         }
@@ -116,6 +130,7 @@ public class RoundSystem : MonoBehaviour
         timeNewRoundRemaining -= Time.deltaTime;
         timerNewRoundText = Mathf.RoundToInt(timeNewRoundRemaining).ToString();
         newRoundTimeText.text= "New Round TImer: " + timerNewRoundText;
+        newRoundTimeTextVr.text = "New Round TImer: " + timerNewRoundText;
         if (timeNewRoundRemaining <= 0.0f)
         {
             StopNewRoundTimer();
@@ -139,6 +154,7 @@ public class RoundSystem : MonoBehaviour
         timeRoundRemaining -= Time.deltaTime;
         timerRoundText = Mathf.RoundToInt(timeRoundRemaining).ToString();
         roundTimeText.text = "Timer: " + timerRoundText;
+        roundTimeTextVr.text = "Timer: " + timerRoundText;
         if (timeRoundRemaining <= 0.0f)
         {
             StopRoundTimer();

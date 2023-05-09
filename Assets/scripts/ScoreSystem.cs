@@ -5,11 +5,14 @@ using UnityEngine.UI;
 
 public class ScoreSystem : MonoBehaviour
 {
-    public Text ScoreText;
+
     public int score = 0;
     public int lives = 6;
     public int maxScore;
     public Text LifeText;
+    public Text ScoreText;
+    public Text LifeTextVr;
+    public Text ScoreTextVr;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,7 @@ public class ScoreSystem : MonoBehaviour
     public void UpdateScore()
     {
         ScoreText.text = "Score: "+score.ToString();
+        ScoreTextVr.text = "Score: " + score.ToString();
     }
 
     public void LessLife() //2
@@ -36,6 +40,7 @@ public class ScoreSystem : MonoBehaviour
     private void UpdateLife()
     {
         LifeText.text = "Life: " + lives;
+        LifeTextVr.text = "Life: " + lives;
 
     }
 
