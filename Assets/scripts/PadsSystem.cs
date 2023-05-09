@@ -258,7 +258,7 @@ public class PadsSystem : MonoBehaviour
     {
         while (blinkCount < numBlinks)
         {
-            leftHandLight.intensity = 200f;
+            leftHandLight.intensity = 2000f;
             yield return new WaitForSeconds(0.1f);
             leftHandLight.intensity = 0;
             yield return new WaitForSeconds(0.1f);
