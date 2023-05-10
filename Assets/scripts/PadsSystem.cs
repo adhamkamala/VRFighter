@@ -199,7 +199,7 @@ public class PadsSystem : MonoBehaviour
         }
 
         if (scoreSystem.NoLifeChecker()) { // true if 0 lives
-            roundSystem.EndRoundLose();
+            roundSystem.EndFullRoundLose();
         }
         if (currentHandType == HandType.LeftHand)        // which hand -->  LeftPadHitAnimation(); + LeftPadDeactivator or  RightPadHitAnimation(); + RightPadDeactivator
         {

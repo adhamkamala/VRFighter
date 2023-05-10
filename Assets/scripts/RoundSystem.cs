@@ -17,6 +17,8 @@ public class RoundSystem : MonoBehaviour
     public Text roundTimeTextVr;
     public Text newRoundTimeTextVr;
     public Text animationSpeedTextVr;
+    public ScoreSystem scoreSystem;
+    public XRHandController XRHandController;
 
     private float animatorSpeed = 0.2f;
     private bool timerRoundActive = false;
@@ -29,7 +31,6 @@ public class RoundSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        setAnimatorText();
         padsSystem.Setup();
         padsSystem.DeactivateBothPads();
         StartRound();
@@ -69,7 +70,23 @@ public class RoundSystem : MonoBehaviour
     {
         Debug.Log("U Lost the Round...");
         padsSystem.DeactivateBothPads();
+        scoreSystem.LessLife();
+        if (scoreSystem.NoLifeChecker())
+        { // true if 0 lives
+            EndFullRoundLose();
+        }
         RoundSpeedUp();
+        animator.Play("TainerMovePadTrick2End");
+        TimerNewRoundIntiator();
+        animationCounter++;
+    }
+    public void EndFullRoundLose()
+    {
+        Debug.Log("U Lost the Full Round...");
+        padsSystem.DeactivateBothPads();
+        scoreSystem.ResetLife();
+        ResetRoundSpeed();
+        scoreSystem.ClearScore();
         animator.Play("TainerMovePadTrick2End");
         TimerNewRoundIntiator();
         animationCounter++;
@@ -77,12 +94,11 @@ public class RoundSystem : MonoBehaviour
     void RoundSpeedUp()
     {
         Debug.Log("Speeding Up Round...");
-        roundSpeed = roundSpeed - 0.5f;
+        roundSpeed = roundSpeed - 1.4f;
         timeRoundRemaining = 10f + roundSpeed;
-        animatorSpeed = animatorSpeed + 0.5f;
-        timeNewRoundRemaining = timeNewRoundRemaining + (roundSpeed * 1.2f);
-        setAnimatorText();
-        if (animatorSpeed >= 3.5f || timeNewRoundRemaining <=2)
+        animatorSpeed = animatorSpeed + 0.6f;
+        timeNewRoundRemaining = timeNewRoundRemaining + (roundSpeed * 0.25f);
+        if (animatorSpeed >= 6.3f || timeNewRoundRemaining <=1f || timeRoundRemaining <= 1f)
         {
             ResetRoundSpeed();
         }
@@ -107,11 +123,14 @@ public class RoundSystem : MonoBehaviour
         padsSystem.StartRandomizePads();
         animator.Rebind();  
         animator.speed = animatorSpeed;
+        setAnimatorText();
         animator.Play("TainerMovePadTrick2Start");
         while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f || animator.IsInTransition(0))
         {
             yield return null;
         }
+        XRHandController.HapticLeftSuccess();
+        XRHandController.HapticRightSuccess();
         padsSystem.ActivateBothPads();
         TimerRoundIntiator();
     }
@@ -170,6 +189,7 @@ public class RoundSystem : MonoBehaviour
 
     private void OnRoundTimerEnd()
     {
+
         EndRoundLose();
     }
 }

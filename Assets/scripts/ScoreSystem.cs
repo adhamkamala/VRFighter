@@ -30,7 +30,17 @@ public class ScoreSystem : MonoBehaviour
         ScoreText.text = "Score: "+score.ToString();
         ScoreTextVr.text = "Score: " + score.ToString();
     }
-
+    public void ClearScore()
+    {
+        score = 0;
+        ScoreText.text = "Score: " + score.ToString();
+        ScoreTextVr.text = "Score: " + score.ToString();
+    }
+    public void ResetLife()
+    {
+        lives = 6;
+        UpdateLife();
+    }
     public void LessLife() //2
     {
         lives--;
