@@ -1973,6 +1973,7 @@ GameObject:
   - component: {fileID: 596065821}
   - component: {fileID: 596065823}
   - component: {fileID: 596065824}
+  - component: {fileID: 596065825}
   m_Layer: 0
   m_Name: PadsSystem
   m_TagString: Untagged
@@ -2059,6 +2060,20 @@ MonoBehaviour:
   animationSpeedTextVr: {fileID: 1136895973}
   scoreSystem: {fileID: 160347541}
   XRHandController: {fileID: 596065823}
+  animationSystem: {fileID: 596065825}
+--- !u!114 &596065825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596065820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50424ca39ac288747a2b814e710566db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1090635773}
 --- !u!4 &605928108 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1723911351708621364, guid: 4256154cb57c5cc4a8bfa193f12ada00, type: 3}

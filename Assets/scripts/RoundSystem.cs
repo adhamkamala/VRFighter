@@ -19,6 +19,7 @@ public class RoundSystem : MonoBehaviour
     public Text animationSpeedTextVr;
     public ScoreSystem scoreSystem;
     public XRHandController XRHandController;
+    public AnimationSystem animationSystem;
 
     private float animatorSpeed = 0.2f;
     private bool timerRoundActive = false;
@@ -58,7 +59,8 @@ public class RoundSystem : MonoBehaviour
     {
         Debug.Log("U Won the Round...");
         padsSystem.DeactivateBothPads();
-        animator.Play("TainerMovePadTrick2End");
+       // animator.Play("TainerMovePadTrick2End");
+        animationSystem.PlayAnimationNormal("TainerMovePadTrick2End");
         RoundSpeedUp();
         TimerNewRoundIntiator();
         StopRoundTimer();
@@ -76,7 +78,8 @@ public class RoundSystem : MonoBehaviour
             EndFullRoundLose();
         }
         RoundSpeedUp();
-        animator.Play("TainerMovePadTrick2End");
+        //animator.Play("TainerMovePadTrick2End");
+        animationSystem.PlayAnimationNormal("TainerMovePadTrick2End");
         TimerNewRoundIntiator();
         animationCounter++;
     }
@@ -87,7 +90,8 @@ public class RoundSystem : MonoBehaviour
         scoreSystem.ResetLife();
         ResetRoundSpeed();
         scoreSystem.ClearScore();
-        animator.Play("TainerMovePadTrick2End");
+       // animator.Play("TainerMovePadTrick2End");
+        animationSystem.PlayAnimationNormal("TainerMovePadTrick2End");
         TimerNewRoundIntiator();
         animationCounter++;
     }
@@ -118,17 +122,24 @@ public class RoundSystem : MonoBehaviour
         animatorSpeed  = 0.2f;
         timeNewRoundRemaining = 5f;
     }
-    IEnumerator RoundIntiatorCoroutine()
+    IEnumerator RoundIntiatorCoroutine() // not req by imp. anim.sys. class
     {
         padsSystem.StartRandomizePads();
-        animator.Rebind();  
-        animator.speed = animatorSpeed;
+        // animator.Rebind();  
+        animationSystem.ClearAnimator();
+        animationSystem.SetAnimatorSpeed(animatorSpeed);
+       // animator.speed = animatorSpeed;
         setAnimatorText();
-        animator.Play("TainerMovePadTrick2Start");
-        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f || animator.IsInTransition(0))
+       // animator.Play("TainerMovePadTrick2Start");
+        while (!animationSystem.PlayAnimationAndWait("TainerMovePadTrick2Start"))
         {
+            //?? 
             yield return null;
         }
+      //  while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f || animator.IsInTransition(0))
+      //  {
+      //      yield return null;
+      //  }
         XRHandController.HapticLeftSuccess();
         XRHandController.HapticRightSuccess();
         padsSystem.ActivateBothPads();
