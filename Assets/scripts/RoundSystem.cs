@@ -130,16 +130,17 @@ public class RoundSystem : MonoBehaviour
         animationSystem.SetAnimatorSpeed(animatorSpeed);
        // animator.speed = animatorSpeed;
         setAnimatorText();
-       // animator.Play("TainerMovePadTrick2Start");
-        while (!animationSystem.PlayAnimationAndWait("TainerMovePadTrick2Start"))
+
+        //while (!animationSystem.PlayAnimationAndWait("TainerMovePadTrick2Start"))
+        //{
+        //    ??
+        //    yield return null;
+        //}
+        animator.Play("TainerMovePadTrick2Start");
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f || animator.IsInTransition(0))
         {
-            //?? 
             yield return null;
         }
-      //  while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f || animator.IsInTransition(0))
-      //  {
-      //      yield return null;
-      //  }
         XRHandController.HapticLeftSuccess();
         XRHandController.HapticRightSuccess();
         padsSystem.ActivateBothPads();
