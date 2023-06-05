@@ -34,7 +34,12 @@ public class RoundSystem : MonoBehaviour
     {
         padsSystem.Setup();
         padsSystem.DeactivateBothPads();
+
+        // if gamemode 1
         StartRound();
+
+        // if gamemode2
+        // StartRoundTrainer();
     }
 
     // Update is called once per frame
@@ -54,6 +59,7 @@ public class RoundSystem : MonoBehaviour
     public void StartRound()
     {
         StartCoroutine(RoundIntiatorCoroutine());
+        //RoundIntiatorCoroutine();
     }
     public void EndRoundWin()
     {
@@ -131,16 +137,18 @@ public class RoundSystem : MonoBehaviour
        // animator.speed = animatorSpeed;
         setAnimatorText();
 
-        //while (!animationSystem.PlayAnimationAndWait("TainerMovePadTrick2Start"))
+        //  while (!animationSystem.PlayAnimationAndWait("TainerMovePadTrick2Start"))
+        //   {
+        //??
+        //     yield return null;
+        // }
+        //animator.Play("TainerMovePadTrick2Start");
+        //while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f || animator.IsInTransition(0))
         //{
-        //    ??
         //    yield return null;
         //}
-        animator.Play("TainerMovePadTrick2Start");
-        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f || animator.IsInTransition(0))
-        {
-            yield return null;
-        }
+        yield return StartCoroutine(animationSystem.PlayAnimationAndWaitCoroutine("TainerMovePadTrick2Start"));
+        //animationSystem.PlayAnimationAndWait("TainerMovePadTrick2Start");
         XRHandController.HapticLeftSuccess();
         XRHandController.HapticRightSuccess();
         padsSystem.ActivateBothPads();
@@ -203,5 +211,15 @@ public class RoundSystem : MonoBehaviour
     {
 
         EndRoundLose();
+    }
+
+
+    // Mode 2
+    private void StartRoundTrainer()
+    {
+       // padsSystem.StartRandomizePads(); --> wait for input from user and asign pads & activate them
+        animationSystem.ClearAnimator();
+      //  animationSystem.SetAnimatorSpeed(animatorSpeed); --> also input from user
+      // animation is a bit complex --> should there be an order? if yes then ui should have that
     }
 }
