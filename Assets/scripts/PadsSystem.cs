@@ -316,7 +316,7 @@ public class PadsSystem : MonoBehaviour
         StartCoroutine (RightPadTempDeactivatorTimer());
     }
     
-    public void ActivateBothPads()
+    public void ActivateBothPads() // activate and Randomize Colors
     {
         RightPadActivator();
         LeftPadActivator();
@@ -339,4 +339,30 @@ public class PadsSystem : MonoBehaviour
         yield return new WaitForSeconds(1f);
         rightHandPad.layer = LayerMask.NameToLayer("enemylayer");
     }
+
+
+    // Mode 2
+
+    public void setLeftPadColor(int colorNumber) // 0 --> blue ; 1 --> red
+    {
+        if (colorNumber == 0 || colorNumber == 1)
+        {
+            leftHandPadRend.material = handMaterials[colorNumber];
+        }
+    }
+    public void setRightPadColor(int colorNumber)
+    {
+        if (colorNumber == 0 || colorNumber == 1)
+        {
+            rightHandPadRend.material = handMaterials[colorNumber];
+        }
+    }
+
+    public void setOrderPads() // --> Net Order!!! fürs erste..
+    {
+        StartRandomizePads();
+    }
+
+    
+    // --> Net Animation
 }

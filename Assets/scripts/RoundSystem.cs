@@ -40,6 +40,10 @@ public class RoundSystem : MonoBehaviour
 
         // if gamemode2
         // StartRoundTrainer();
+        //if ()
+        //{
+        //    LaunchModeSecond();
+        //}
     }
 
     // Update is called once per frame
@@ -215,11 +219,35 @@ public class RoundSystem : MonoBehaviour
 
 
     // Mode 2
-    private void StartRoundTrainer()
+    private void LaunchModeSecond()
     {
        // padsSystem.StartRandomizePads(); --> wait for input from user and asign pads & activate them
-        animationSystem.ClearAnimator();
-      //  animationSystem.SetAnimatorSpeed(animatorSpeed); --> also input from user
-      // animation is a bit complex --> should there be an order? if yes then ui should have that
+       
+
+        // SET PADS COLOR
+        // await for user input then handle it!!
+        //padsSystem.setLeftPadColor(0);
+        // padsSystem.setRightPadColor(0);
+
+        // RANDOMIZE ORDER
+        padsSystem.setOrderPads();
+
+        //LAUNCH ANIMATION
+        StartCoroutine(ModeSecondCoroutine());
+
+        //  animationSystem.SetAnimatorSpeed(animatorSpeed); --> also input from user
+        // animation is a bit complex --> should there be an order? if yes then ui should have that
     }
+    IEnumerator ModeSecondCoroutine() // not req by imp. anim.sys. class
+    {
+        animationSystem.ClearAnimator();
+        animationSystem.SetAnimatorSpeed(animatorSpeed);
+        setAnimatorText();
+        yield return StartCoroutine(animationSystem.PlayAnimationAndWaitCoroutine("XXXXXX"));
+        XRHandController.HapticLeftSuccess();
+        XRHandController.HapticRightSuccess();
+       // TimerRoundIntiator();
+    }
+
+
 }
