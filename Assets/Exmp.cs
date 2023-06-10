@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalTrainerMode : MonoBehaviour
+public class Exmp : MonoBehaviour
 {
-    public RoundSystem roundSystem;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +15,8 @@ public class NormalTrainerMode : MonoBehaviour
     {
         
     }
-
-    public void LunchMode()
+    void Awake()
     {
-        roundSystem.StartRound();
+        DontDestroyOnLoad(this);
     }
 }

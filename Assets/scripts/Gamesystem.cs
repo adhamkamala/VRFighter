@@ -1,3 +1,4 @@
+using Photon.Pun.Demo.PunBasics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,18 +11,22 @@ public class Gamesystem : MonoBehaviour
     public NetTrainerMode netTrainerMode;
     public TestMode testMode;
     // Start is called before the first frame update
+    private MainMenu mainMenu;
     void Start()
     {
-        checkGameMode();
+        // checkGameMode();
+         mainMenu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
+         gameMode = mainMenu.getGameMode();
+         checkGameMode();
     }
-
+    
     // Update is called once per frame
     void Update()
     {
         
     }
 
-    private void checkGameMode()
+    public void checkGameMode()
     {
         //each lunchmode
         if (gameMode == 0) // Normal NPC trainer //NormalTrainerMode
@@ -39,5 +44,9 @@ public class Gamesystem : MonoBehaviour
             testMode.LunchMode();
           //  LaunchModeTest();
         }
+    }
+    public void setGameMode(int i) {
+        Debug.Log("Called");
+        gameMode = i;
     }
 }

@@ -6,7 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/test/Prototype.unity
+    path: "Assets/Scenes/StartMen\xFC.unity"
+    guid: a2f5ce13676974742b60b2914c38408f
+  - enabled: 1
+    path: Assets/Scenes/WaitingScreen.unity
+    guid: b659c7d64a624254cb710fdc46dc5ee8
+  - enabled: 1
+    path: Assets/Scenes/Prototype.unity
     guid: a10ba968ad8cecf4cb530bd467156066
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 84c4a3ee482e2ac4b8c9c005ce6f022f, type: 2}
