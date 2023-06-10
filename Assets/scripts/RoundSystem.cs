@@ -27,23 +27,15 @@ public class RoundSystem : MonoBehaviour
     private string timerNewRoundText;
     private string timerRoundText;
     private float roundSpeed = 0f;
+    private bool roundSpeedUp = false;
     private int animationCounter = 0;
+    private int gameMode = 2;
 
     // Start is called before the first frame update
     void Start()
     {
         padsSystem.Setup();
         padsSystem.DeactivateBothPads();
-
-        // if gamemode 1
-        StartRound();
-
-        // if gamemode2
-        // StartRoundTrainer();
-        //if ()
-        //{
-        //    LaunchModeSecond();
-        //}
     }
 
     // Update is called once per frame
@@ -59,7 +51,10 @@ public class RoundSystem : MonoBehaviour
             UpdateRoundTimer();
         }
     }
-
+    public void StartRoundTimerOnly()
+    {
+        TimerRoundIntiator();
+    }
     public void StartRound()
     {
         StartCoroutine(RoundIntiatorCoroutine());
@@ -71,7 +66,10 @@ public class RoundSystem : MonoBehaviour
         padsSystem.DeactivateBothPads();
        // animator.Play("TainerMovePadTrick2End");
         animationSystem.PlayAnimationNormal("TainerMovePadTrick2End");
-        RoundSpeedUp();
+        if (roundSpeedUp)
+        {
+            RoundSpeedUp();
+        }
         TimerNewRoundIntiator();
         StopRoundTimer();
         animationCounter++;
@@ -87,7 +85,10 @@ public class RoundSystem : MonoBehaviour
         { // true if 0 lives
             EndFullRoundLose();
         }
-        RoundSpeedUp();
+        if (roundSpeedUp)
+        {
+            RoundSpeedUp();
+        }
         //animator.Play("TainerMovePadTrick2End");
         animationSystem.PlayAnimationNormal("TainerMovePadTrick2End");
         TimerNewRoundIntiator();
@@ -118,7 +119,14 @@ public class RoundSystem : MonoBehaviour
         }
 
     }
-
+    public void turnOnSpeedUpRound()
+    {
+        roundSpeedUp = true;
+    }
+    public void turnOffSpeedUpRound()
+    {
+        roundSpeedUp = false;
+    }
     void setAnimatorText()
     {
         animationSpeedText.text = "Animation Speed: " + animatorSpeed;
@@ -151,8 +159,9 @@ public class RoundSystem : MonoBehaviour
         //{
         //    yield return null;
         //}
+        //animationSystem.PlayAnimationAndWait("TainerMovePadTrick2Start")
+
         yield return StartCoroutine(animationSystem.PlayAnimationAndWaitCoroutine("TainerMovePadTrick2Start"));
-        //animationSystem.PlayAnimationAndWait("TainerMovePadTrick2Start");
         XRHandController.HapticLeftSuccess();
         XRHandController.HapticRightSuccess();
         padsSystem.ActivateBothPads();
@@ -218,36 +227,8 @@ public class RoundSystem : MonoBehaviour
     }
 
 
-    // Mode 2
-    private void LaunchModeSecond()
-    {
-       // padsSystem.StartRandomizePads(); --> wait for input from user and asign pads & activate them
-       
-
-        // SET PADS COLOR
-        // await for user input then handle it!!
-        //padsSystem.setLeftPadColor(0);
-        // padsSystem.setRightPadColor(0);
-
-        // RANDOMIZE ORDER
-        padsSystem.setOrderPads();
-
-        //LAUNCH ANIMATION
-        StartCoroutine(ModeSecondCoroutine());
-
-        //  animationSystem.SetAnimatorSpeed(animatorSpeed); --> also input from user
-        // animation is a bit complex --> should there be an order? if yes then ui should have that
-    }
-    IEnumerator ModeSecondCoroutine() // not req by imp. anim.sys. class
-    {
-        animationSystem.ClearAnimator();
-        animationSystem.SetAnimatorSpeed(animatorSpeed);
-        setAnimatorText();
-        yield return StartCoroutine(animationSystem.PlayAnimationAndWaitCoroutine("XXXXXX"));
-        XRHandController.HapticLeftSuccess();
-        XRHandController.HapticRightSuccess();
-       // TimerRoundIntiator();
-    }
+ 
+   
 
 
 }

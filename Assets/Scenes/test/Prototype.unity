@@ -2073,6 +2073,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50424ca39ac288747a2b814e710566db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationsFromStillLeft:
+  - {fileID: 7400000, guid: 7b13a286d34c4ca41b0e706bfbdd4beb, type: 2}
+  - {fileID: 7400000, guid: 620e1978143ee5e4081a29068d56d591, type: 2}
+  - {fileID: 7400000, guid: c3a0c801c059f664db480391ec634bdd, type: 2}
+  - {fileID: 7400000, guid: 87619d86e0bed01439c56077b30488ff, type: 2}
+  animationsFromStillRight:
+  - {fileID: 7400000, guid: d956cd5c39d6d324684e099bef42cf66, type: 2}
+  - {fileID: 7400000, guid: ee921cfbde9bd144498eb1466efe9459, type: 2}
+  - {fileID: 7400000, guid: 36afd7225c6de574196eda3214c4f008, type: 2}
+  - {fileID: 7400000, guid: 83d6afe525894f642ae577ab78bb50de, type: 2}
+  transitionAnimationsLeft:
+  - {fileID: 7400000, guid: c9030022711abca41b413e61b508f11c, type: 2}
+  - {fileID: 7400000, guid: 8d438755a71a196419a9ea45ea4ade79, type: 2}
+  - {fileID: 7400000, guid: 33705eda38c5a1946b5375bd6ac9f410, type: 2}
+  transitionAnimationsRight:
+  - {fileID: 7400000, guid: b48b77748aaf9154fa593fc7f2a40ae7, type: 2}
+  - {fileID: 7400000, guid: 6cb1d3132f7794a4cb57d9b18dc996da, type: 2}
+  - {fileID: 7400000, guid: 68797335028bcd14ea8193160fee56ba, type: 2}
+  transitionAnimationsReverseLeft:
+  - {fileID: 7400000, guid: 07a4613a6f89ef343b611e6f046f12f1, type: 2}
+  - {fileID: 7400000, guid: c7a3faf51d406cd42b82900fa14c70c0, type: 2}
+  - {fileID: 7400000, guid: 3f5ab6b0ae84b4d4fb0bc438a159b03c, type: 2}
+  transitionAnimationsReverseRight:
+  - {fileID: 7400000, guid: a7416ee530242f741baaadd0d2fe2400, type: 2}
+  - {fileID: 7400000, guid: 810734ded2dadbf4cb65a10faa236ac6, type: 2}
+  - {fileID: 7400000, guid: 5dbfe826e669fee4dbeeb55099a9f381, type: 2}
   animator: {fileID: 1090635773}
 --- !u!4 &605928108 stripped
 Transform:
@@ -6829,7 +6855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4736855210318200757, guid: b4ef5ef315bbc1c48ace01faa14ddf52, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000011920929
+      value: -0.04
       objectReference: {fileID: 0}
     - target: {fileID: 4736855210318200757, guid: b4ef5ef315bbc1c48ace01faa14ddf52, type: 3}
       propertyPath: m_LocalPosition.z
