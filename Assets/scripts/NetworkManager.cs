@@ -47,7 +47,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
         if (photonEvent.Code == 1)
         {
             Debug.Log("Phone has joined the room!");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+            SceneManager.LoadScene("Prototype");
         }
         else
         {

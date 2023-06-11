@@ -8,7 +8,7 @@ public class CommunicationHandler : MonoBehaviourPunCallbacks, IOnEventCallback
     public static CommunicationHandler Instance;
     public NetTrainerMode NetTrainerMode;
 
-    private const byte LButtonRedPressEventCode = 1;
+    private const byte LButtonRedPressEventCode = 13;
     private const byte LButtonBlueEventCode = 2;
     private const byte LButtonUnderEventCode = 3;
     private const byte LButtonMiddleEventCode = 4;
@@ -183,24 +183,24 @@ public class CommunicationHandler : MonoBehaviourPunCallbacks, IOnEventCallback
     private void HandleRButtonUnderPress()
     {
         Debug.Log("Right Button Under Pressed");
-        NetTrainerMode.HandlePadLeftAnimate("TrainerLowRight");
+        NetTrainerMode.HandlePadRightAnimate("TrainerLowRight");
     }
 
     private void HandleRButtonMiddlePress()
     {
         Debug.Log("Right Button Middle Pressed");
-        NetTrainerMode.HandlePadLeftAnimate("TrainerMidRight");
+        NetTrainerMode.HandlePadRightAnimate("TrainerMidRight");
     }
 
     private void HandleRButtonHighPress()
     {
         Debug.Log("Right Button High Pressed");
-        NetTrainerMode.HandlePadLeftAnimate("TrainerHighRight");
+        NetTrainerMode.HandlePadRightAnimate("TrainerHighRight");
     }
 
     private void HandleRButtonUpperPress()
     {
         Debug.Log("Right Button Upper Pressed");
-        NetTrainerMode.HandlePadLeftAnimate("TrainerUpperRight");
+        NetTrainerMode.HandlePadRightAnimate("TrainerUpperRight");
     }
 }
