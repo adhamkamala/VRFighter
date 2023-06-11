@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Gamesystem : MonoBehaviour
 {
-    public int gameMode = 2;
+    public int gameMode;
     public NormalTrainerMode normalTrainerMode;
     public NetTrainerMode netTrainerMode;
     public TestMode testMode;
@@ -48,5 +48,9 @@ public class Gamesystem : MonoBehaviour
     public void setGameMode(int i) {
         Debug.Log("Called");
         gameMode = i;
+    }
+    public int getGameMode()
+    {
+        return gameMode;
     }
 }

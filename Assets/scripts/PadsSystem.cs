@@ -184,6 +184,60 @@ public class PadsSystem : MonoBehaviour
         scoreSystem.AddScore(50);
         MoveOrder();
     }
+    public void HitSuccessMode2()
+    {
+        // 1. Add Score
+        // 2. Show green light effect
+        // set Next
+        if (currentHandType == HandType.LeftHand)        // which hand -->  LeftPadHitAnimation(); + LeftPadDeactivator or  RightPadHitAnimation(); + RightPadDeactivator
+        {
+            XRHandController.HapticLeftSuccess();
+        }
+        else if (currentHandType == HandType.RightHand)
+        {
+            XRHandController.HapticRightSuccess();
+        }
+        if (currentPadType == PadType.LeftPad)
+        {
+            LeftPadHitAnimation();
+            LeftPadDeactivator();
+        }
+        else if (currentPadType == PadType.RightPad)
+        {
+            RightPadHitAnimation();
+            RightPadDeactivator();
+        }
+        else
+        {
+            //
+        }
+    }
+    public void HitFailureMode2()
+    {
+        // 1. take 1 life --> life-- if 0 --> lost -> RoundLostFinializer()
+        // 2. Show red light Effect -->
+        // which hand --> LeftPadFailAnimation or RightPadFailAnimation
+
+        if (currentPadType == PadType.LeftPad)       // which hand --> LeftPadFailAnimation or RightPadFailAnimation
+        {
+            LeftPadFailAnimation();
+            LeftPadTempDeactivator();
+        }
+        else if (currentPadType == PadType.RightPad)
+        {
+            RightPadFailAnimation();
+            RightPadTempDeactivator();
+        }
+        if (currentHandType == HandType.LeftHand)        // which hand -->  LeftPadHitAnimation(); + LeftPadDeactivator or  RightPadHitAnimation(); + RightPadDeactivator
+        {
+            XRHandController.HapticLeftFail();
+        }
+        else if (currentHandType == HandType.RightHand)
+        {
+            XRHandController.HapticRightFail();
+        }
+
+    }
     public void HitFailure()
     {
         // 1. take 1 life --> life-- if 0 --> lost -> RoundLostFinializer()
@@ -299,6 +353,14 @@ public class PadsSystem : MonoBehaviour
         rightHandPad.layer = LayerMask.NameToLayer("enemylayer");
         rightHandPadRend.material = handMaterials[UnityEngine.Random.Range(0, handMaterials.Length)];
     }
+    void LeftPadActivatorMode2()
+    {
+        leftHandPad.layer = LayerMask.NameToLayer("enemylayer");
+    }
+    void RightPadActivatorMode2()
+    {
+        rightHandPad.layer = LayerMask.NameToLayer("enemylayer");
+    }
     void LeftPadDeactivator()
     {
         leftHandPad.layer = LayerMask.NameToLayer("Default");
@@ -324,6 +386,12 @@ public class PadsSystem : MonoBehaviour
     {
         RightPadActivator();
         LeftPadActivator();
+    }
+
+    public void ActivateBothPadsMode2() // activate and Randomize Colors
+    {
+        RightPadActivatorMode2();
+        LeftPadActivatorMode2();
     }
     public void DeactivateBothPads()
     {

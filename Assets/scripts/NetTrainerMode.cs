@@ -11,7 +11,7 @@ public class NetTrainerMode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        roundSystem.HideUI();
     }
 
     // Update is called once per frame
@@ -74,5 +74,9 @@ public class NetTrainerMode : MonoBehaviour
     public void HandlePadsOrder(int leftPadOrder, int rightPadOrder) // next version
     {
         padsSystem.setOrderPads();
+    }
+    public void HandleActivateBothPads()
+    {
+        padsSystem.ActivateBothPadsMode2();
     }
 }

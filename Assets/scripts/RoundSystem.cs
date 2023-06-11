@@ -20,6 +20,7 @@ public class RoundSystem : MonoBehaviour
     public ScoreSystem scoreSystem;
     public XRHandController XRHandController;
     public AnimationSystem animationSystem;
+    public GameObject UIObject;
 
     private float animatorSpeed = 0.2f;
     private bool timerRoundActive = false;
@@ -224,6 +225,14 @@ public class RoundSystem : MonoBehaviour
     {
 
         EndRoundLose();
+    }
+    public void HideUI()
+    {
+        UIObject.SetActive(false);
+    }
+    public void ShowUI()
+    {
+        UIObject.SetActive(true);
     }
 
 

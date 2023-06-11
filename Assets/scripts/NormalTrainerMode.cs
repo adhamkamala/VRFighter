@@ -8,7 +8,7 @@ public class NormalTrainerMode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+   
     }
 
     // Update is called once per frame
@@ -19,6 +19,7 @@ public class NormalTrainerMode : MonoBehaviour
 
     public void LunchMode()
     {
+        roundSystem.ShowUI();
         roundSystem.StartRound();
     }
 }
