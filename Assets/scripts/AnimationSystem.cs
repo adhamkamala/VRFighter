@@ -81,12 +81,16 @@ public class AnimationSystem : MonoBehaviour
     // change animation from --> to !! GetCurrent Location in the array..
     //if GetCurrentAnimationName == null --> from still
 
-    public void PadsNetAnimate(string leftAnimationName, string rightAnimationName)
+    public void PadsNetLeftAnimate(string leftAnimationName)
     {
         if (!string.IsNullOrEmpty(leftAnimationName)) {
             StartCoroutine(LeftPadNetAnimate(leftAnimationName));
         }
-        if (!string.IsNullOrEmpty(rightAnimationName)) {
+    }
+    public void PadsNetRightAnimate( string rightAnimationName)
+    {
+        if (!string.IsNullOrEmpty(rightAnimationName))
+        {
             StartCoroutine(RightPadNetAnimate(rightAnimationName));
         }
     }

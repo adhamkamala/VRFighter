@@ -55,13 +55,20 @@ public class NetTrainerMode : MonoBehaviour
 
 
 
-    public void HandlePadsAnimate(string leftPad, string rightPad)
+    public void HandlePadLeftAnimate(string leftPad)
     {
-        animationSystem.PadsNetAnimate(leftPad, rightPad);
+        animationSystem.PadsNetLeftAnimate(leftPad);
     }
-    public void HanldePadsColor(int leftPadColor, int rightPadColor) // 0 --> blue ; 1 --> red
+    public void HandlePadRightAnimate(string rightPad)
+    {
+        animationSystem.PadsNetRightAnimate(rightPad);
+    }
+    public void HanldePadLeftColor(int leftPadColor) // 0 --> blue ; 1 --> red
     {
         padsSystem.setLeftPadColor(leftPadColor);
+    }
+    public void HanldePadRightColor(int rightPadColor) // 0 --> blue ; 1 --> red
+    {
         padsSystem.setRightPadColor(rightPadColor);
     }
     public void HandlePadsOrder(int leftPadOrder, int rightPadOrder) // next version

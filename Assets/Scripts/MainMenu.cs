@@ -8,6 +8,7 @@ using UnityEngine.SocialPlatforms.Impl;
 public class MainMenu : MonoBehaviour
 {
     private int gameMode;
+    public NetworkManager NetworkManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +31,11 @@ public class MainMenu : MonoBehaviour
     public void playMuliMode()
     {
         gameMode = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+       // NetworkManager.ConnectToServer();
+        NetworkManager.CreateRoom();
+       // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+   
+
     }
     void Awake()
     {
