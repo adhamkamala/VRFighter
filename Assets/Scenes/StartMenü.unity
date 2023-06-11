@@ -1504,7 +1504,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 650273580}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b75f217ec8c334e4a9273f3e7dc48e9d, type: 3}
   m_Name: 
@@ -1515,6 +1515,7 @@ MonoBehaviour:
   gameObj: {fileID: 650273581}
   distance: 0.25
   leftHandMaterial: {fileID: 2100000, guid: 1ff3d260b71621d4fb5acd835459ef5b, type: 2}
+  gameSystem: {fileID: 0}
 --- !u!114 &650273583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2118,7 +2119,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 686061854}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b71dbbf0f29624348a787128dcdfb4f4, type: 3}
   m_Name: 
@@ -2129,6 +2130,7 @@ MonoBehaviour:
   gameObj: {fileID: 686061855}
   distance: 0.25
   rightHandMaterial: {fileID: 2100000, guid: 9542fd9c83900b345b5cd18df40317fc, type: 2}
+  gameSystem: {fileID: 0}
 --- !u!114 &686061857
 MonoBehaviour:
   m_ObjectHideFlags: 0
