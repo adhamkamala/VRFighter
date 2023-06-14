@@ -15,8 +15,9 @@ public class Gamesystem : MonoBehaviour
     void Start()
     {
         // checkGameMode();
-         mainMenu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
-         gameMode = mainMenu.getGameMode();
+        // mainMenu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
+        gameMode = MainMenu.gameMode;
+        Debug.Log(gameMode);
          checkGameMode();
     }
     
@@ -56,5 +57,9 @@ public class Gamesystem : MonoBehaviour
     public void BackToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+    private void Awake()
+    {
+   
     }
 }

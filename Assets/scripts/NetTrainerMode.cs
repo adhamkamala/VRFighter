@@ -11,8 +11,10 @@ public class NetTrainerMode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        roundSystem.HideUINPC();
-        roundSystem.ShowUINet();
+        Debug.Log(animationSystem);
+        animationSystem = GameObject.Find("PadsSystem").GetComponent<AnimationSystem>();
+        padsSystem = GetComponent<PadsSystem>();
+        Debug.Log(animationSystem);
     }
 
     // Update is called once per frame
@@ -30,18 +32,9 @@ public class NetTrainerMode : MonoBehaviour
     // Mode 2
     private void LaunchModeNetTrainer()
     {
-        // AWAITS INPUT FROM USER
-        // SET PADS COLOR
-        // RANDOMIZE ORDER
-        //LAUNCH ANIMATION
-        //
-        //padsSystem.setOrderPads();
-
-        //roundSystem.StartRoundTimerOnly();
-        //StartCoroutine(ModeSecondCoroutine());
-
-        //  animationSystem.SetAnimatorSpeed(animatorSpeed); --> also input from user
-        // animation is a bit complex --> should there be an order? if yes then ui should have that
+        roundSystem.EndGameSystem();
+        roundSystem.HideUINPC();
+        roundSystem.ShowUINet();
     }
     //IEnumerator ModeSecondCoroutine() // not req by imp. anim.sys. class
     //{
@@ -58,18 +51,22 @@ public class NetTrainerMode : MonoBehaviour
 
     public void HandlePadLeftAnimate(string leftPad)
     {
+        setAnimationSystem();
         animationSystem.PadsNetLeftAnimate(leftPad);
     }
     public void HandlePadRightAnimate(string rightPad)
     {
+        setAnimationSystem();
         animationSystem.PadsNetRightAnimate(rightPad);
     }
     public void HanldePadLeftColor(int leftPadColor) // 0 --> blue ; 1 --> red
     {
+        setPadsSystem();
         padsSystem.setLeftPadColor(leftPadColor);
     }
     public void HanldePadRightColor(int rightPadColor) // 0 --> blue ; 1 --> red
     {
+        setPadsSystem();
         padsSystem.setRightPadColor(rightPadColor);
     }
     public void HandlePadsOrder(int leftPadOrder, int rightPadOrder) // next version
@@ -78,6 +75,22 @@ public class NetTrainerMode : MonoBehaviour
     }
     public void HandleActivateBothPads()
     {
+        setPadsSystem();
         padsSystem.ActivateBothPadsMode2();
+    }
+
+    private void setAnimationSystem()
+    {
+        if (animationSystem == null)
+        {
+            animationSystem = GameObject.Find("PadsSystem").GetComponent<AnimationSystem>();
+        }
+    }
+    private void setPadsSystem()
+    {
+        if (padsSystem == null)
+        {
+            padsSystem = GameObject.Find("PadsSystem").GetComponent<PadsSystem>();
+        }
     }
 }

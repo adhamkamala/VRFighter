@@ -106,6 +106,14 @@ public class RoundSystem : MonoBehaviour
         TimerNewRoundIntiator();
         animationCounter++;
     }
+    public void EndGameSystem()
+    {
+        padsSystem.DeactivateBothPads();
+        animationSystem.ClearAnimator();
+        timerRoundActive = false;
+        timerNewRoundActive = false;
+
+    }
     void RoundSpeedUp()
     {
         Debug.Log("Speeding Up Round...");

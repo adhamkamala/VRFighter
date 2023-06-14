@@ -19,6 +19,7 @@ public class NormalTrainerMode : MonoBehaviour
 
     public void LunchMode()
     {
+        roundSystem.EndGameSystem();
         roundSystem.ShowUINPC();
         roundSystem.HideUINet();
         roundSystem.StartRound();

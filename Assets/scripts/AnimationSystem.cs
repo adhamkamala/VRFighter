@@ -16,11 +16,12 @@ public class AnimationSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(this);
     }
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+
     }
     // Update is called once per frame
     void Update()

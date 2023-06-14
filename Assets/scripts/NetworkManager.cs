@@ -66,7 +66,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
         if (photonEvent.Code == 1)
         {
             Debug.Log("Phone has joined the room!");
-            SceneManager.LoadScene("Prototype");
+            Scene currentScene = SceneManager.GetActiveScene();
+            if (currentScene.name != "Prototype")
+            {
+                SceneManager.LoadScene("Prototype");
+            }
         }
         else
         {
@@ -80,10 +84,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
             PhotonNetwork.CurrentRoom.IsVisible = false;
             PhotonNetwork.LeaveRoom();
         }
-        PhotonNetwork.Disconnect();
+       // PhotonNetwork.Disconnect();
         Debug.Log("Disconnected from Photon server. Reconnecting...");
         SceneManager.LoadScene("MainMenu");
-        ConnectToServer();
+      //  ConnectToServer();
     }
 }
     

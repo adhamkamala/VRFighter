@@ -6,12 +6,19 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class MainMenu : MonoBehaviour
 {
-    private int gameMode;
+    public static int gameMode;
     public NetworkManager NetworkManager;
+    private static bool hasInstance = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        //if (hasInstance)
+        //{
+        //    Destroy(gameObject);
+        //    return;
+        //}
+        //hasInstance = true;
+        //DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -38,7 +45,7 @@ public class MainMenu : MonoBehaviour
     }
     void Awake()
     {
-        DontDestroyOnLoad(this);
+     //   DontDestroyOnLoad(this);
     }
     public int getGameMode()
     {
