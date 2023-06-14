@@ -245,14 +245,14 @@ public class AnimationSystem : MonoBehaviour
     public IEnumerator PlayAnimationAndWaitLayerCoroutine(string animationName, int layerIndex)
     {
        // animator.Play(animationName, layerIndex);
-        animator.CrossFade(animationName, 0.3f, layerIndex);
-        Debug.Log(animator.GetCurrentAnimatorStateInfo(layerIndex).normalizedTime + " " + animator.IsInTransition(layerIndex));
+        animator.CrossFade(animationName, 0.6f, layerIndex);
+       // Debug.Log(animator.GetCurrentAnimatorStateInfo(layerIndex).normalizedTime + " " + animator.IsInTransition(layerIndex));
         while (animator.GetCurrentAnimatorStateInfo(layerIndex).normalizedTime < 1.0f || animator.IsInTransition(layerIndex))
         {
            // Debug.Log((animator.GetCurrentAnimatorStateInfo(layerIndex).normalizedTime) + " " + animator.IsInTransition(layerIndex));
             yield return null;
         }
-        Debug.Log("DONE0");
+        //Debug.Log("DONE");
         yield return true;
     }
     private int FindInArray(string animationName, AnimationClip[] array )
