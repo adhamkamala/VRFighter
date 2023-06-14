@@ -2,7 +2,7 @@ using Photon.Pun.Demo.PunBasics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class Gamesystem : MonoBehaviour
 {
@@ -52,5 +52,9 @@ public class Gamesystem : MonoBehaviour
     public int getGameMode()
     {
         return gameMode;
+    }
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

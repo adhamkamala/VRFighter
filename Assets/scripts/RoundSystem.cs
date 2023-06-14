@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Tilemaps.TilemapRenderer;
 using UnityEngine.UI;
 
 
@@ -21,6 +19,7 @@ public class RoundSystem : MonoBehaviour
     public XRHandController XRHandController;
     public AnimationSystem animationSystem;
     public GameObject UIObject;
+    public GameObject UINetObject;
 
     private float animatorSpeed = 0.2f;
     private bool timerRoundActive = false;
@@ -226,18 +225,28 @@ public class RoundSystem : MonoBehaviour
 
         EndRoundLose();
     }
-    public void HideUI()
+    public void HideUINPC()
     {
         UIObject.SetActive(false);
     }
-    public void ShowUI()
+    public void ShowUINPC()
     {
         UIObject.SetActive(true);
     }
 
+    public void HideUINet()
+    {
+        UINetObject.SetActive(false);
+    }
+    public void ShowUINet()
+    {
+        UINetObject.SetActive(true);
+    }
 
- 
-   
+
+
+
+
 
 
 }

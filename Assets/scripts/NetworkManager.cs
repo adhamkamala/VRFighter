@@ -5,13 +5,18 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
 using ExitGames.Client.Photon;
+using UnityEngine.SceneManagement;
 
 public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     // Start is called before the first frame update
     void Start()
     {
-       ConnectToServer();
+        if (!PhotonNetwork.IsConnected)
+        {
+            ConnectToServer();
+        }
+      
     }
 
     public void ConnectToServer()
@@ -31,8 +36,22 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
     }
     public void CreateRoom()
     {
-        PhotonNetwork.CreateRoom("Room1");
-        Debug.Log("Room Created");
+        if (PhotonNetwork.IsConnectedAndReady)
+        {
+            RoomOptions roomOptions = new RoomOptions();
+            roomOptions.MaxPlayers = 2;
+            roomOptions.IsVisible = true;
+            roomOptions.IsOpen = true;
+
+            PhotonNetwork.CreateRoom("Room1", roomOptions);
+            Debug.Log("Room creation requested.");
+        }
+        else
+        {
+            Debug.Log("Not connected to Master Server. Wait for callback: OnConnectedToMaster.");
+        }
+
+       // PhotonNetwork.JoinRoom("Room1");
        
     }
 
@@ -53,4 +72,18 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
         {
         }
     }
+    public void BackToMainMenu()
+    {
+        if (PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            PhotonNetwork.CurrentRoom.IsVisible = false;
+            PhotonNetwork.LeaveRoom();
+        }
+        PhotonNetwork.Disconnect();
+        Debug.Log("Disconnected from Photon server. Reconnecting...");
+        SceneManager.LoadScene("MainMenu");
+        ConnectToServer();
+    }
 }
+    

@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour
     public void playMuliMode()
     {
         gameMode = 1;
-       // NetworkManager.ConnectToServer();
+        //NetworkManager.ConnectToServer();
         NetworkManager.CreateRoom();
        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
    

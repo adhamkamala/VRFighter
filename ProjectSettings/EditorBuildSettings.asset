@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: "Assets/Scenes/StartMen\xFC.unity"
+    path: Assets/Scenes/MainMenu.unity
     guid: a2f5ce13676974742b60b2914c38408f
   - enabled: 1
     path: Assets/Scenes/WaitingScreen.unity

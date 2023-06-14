@@ -11,7 +11,8 @@ public class NetTrainerMode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        roundSystem.HideUI();
+        roundSystem.HideUINPC();
+        roundSystem.ShowUINet();
     }
 
     // Update is called once per frame
