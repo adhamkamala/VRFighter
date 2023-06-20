@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     // Start is called before the first frame update
+    public MainMenu mainMenu;
     void Start()
     {
         if (!PhotonNetwork.IsConnected)
@@ -33,6 +34,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
     {
         PhotonNetwork.JoinLobby();
         Debug.Log("Connected to Photon server.");
+    }
+
+    public override void OnJoinedLobby()
+    {
+        mainMenu.playMuliMode();
     }
     public void CreateRoom()
     {
