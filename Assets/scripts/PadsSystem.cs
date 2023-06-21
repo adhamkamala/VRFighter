@@ -213,6 +213,7 @@ public class PadsSystem : MonoBehaviour
         {
             //
         }
+        scoreSystem.AddScoreNet(50);
     }
     public void HitFailureMode2()
     {

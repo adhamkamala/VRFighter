@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Gamesystem : MonoBehaviour
 {
-    public int gameMode;
+    public static int gameMode;
     public NormalTrainerMode normalTrainerMode;
     public NetTrainerMode netTrainerMode;
     public TestMode testMode;

@@ -24,6 +24,8 @@ public class RoundSystem : MonoBehaviour
     private float animatorSpeed = 0.2f;
     private bool timerRoundActive = false;
     private bool timerNewRoundActive = false;
+    private bool timerRoundActiveWasRunning = false;
+    private bool timerNewRoundActiveWasRunning = false;
     private string timerNewRoundText;
     private string timerRoundText;
     private float roundSpeed = 0f;
@@ -135,6 +137,29 @@ public class RoundSystem : MonoBehaviour
     {
         roundSpeedUp = false;
     }
+    public void FreezeTimer()
+    {
+        if (timerRoundActiveWasRunning)
+        {
+            timerRoundActive = false;
+        }
+
+        if (timerNewRoundActiveWasRunning)
+        {
+            timerNewRoundActive = false;
+        }
+    }
+    public void UnfreezeTimer()
+    {
+        if (timerRoundActiveWasRunning)
+        {
+            timerRoundActive = true;
+        }
+        if (timerNewRoundActiveWasRunning)
+        {
+            timerNewRoundActive = true;
+        }
+    }
     void setAnimatorText()
     {
         animationSpeedText.text = "Animation Speed: " + animatorSpeed;
@@ -178,10 +203,12 @@ public class RoundSystem : MonoBehaviour
     void TimerRoundIntiator()
     {
         timerRoundActive = true;
+        timerRoundActiveWasRunning = true;
     }
     void TimerNewRoundIntiator()
     {
         timerNewRoundActive = true;
+        timerNewRoundActiveWasRunning = true;
     }
 
 
@@ -248,7 +275,7 @@ public class RoundSystem : MonoBehaviour
     }
     public void ShowUINet()
     {
-       // UINetObject.SetActive(true);
+        UINetObject.SetActive(true);
     }
 
 

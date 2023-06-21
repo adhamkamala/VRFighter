@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Prototype");
         gameMode = 0;
+        Gamesystem.gameMode = gameMode;
        // Gamesystem.Instance.setGameMode(1);
        // Gamesystem.Instance.checkGameMode();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
@@ -37,6 +38,7 @@ public class MainMenu : MonoBehaviour
     public void playMuliMode()
     {
         gameMode = 1;
+        Gamesystem.gameMode = gameMode;
         //NetworkManager.ConnectToServer();
         NetworkManager.CreateRoom();
        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

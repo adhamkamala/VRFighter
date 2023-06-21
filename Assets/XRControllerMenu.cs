@@ -10,7 +10,7 @@ public class XRControllerMenu : MonoBehaviour
     public ActionBasedController rightController;
     private int pressCount = 0;
     private bool isWaitingForNextPress = false;
-    private float doublePressTimeThreshold = 0.2f;
+    private float doublePressTimeThreshold = 0.4f;
     private Coroutine resetPressCountCoroutine;
     private bool showMenu = false;
     public GameObject leftGloves;
@@ -25,15 +25,23 @@ public class XRControllerMenu : MonoBehaviour
     public XRInteractorLineVisual xrInteractorLineVisualRight;
     public GameObject UICanvasMode1;
     public GameObject UICanvasMode2;
-    public GameObject TrainerDoll;
+    public GameObject trainerDoll;
+    public VisibilitySystem trainerDoll2;
     public Gamesystem gameSystem;
     public RoundSystem roundSystem;
 
     private void Start()
     {
         leftController.selectAction.action.performed += OnMenuButtonPressed;
+        Debug.Log("Start");
     }
-
+    private void OnDestroy()
+    {
+        if (leftController != null)
+        {
+            leftController.selectAction.action.performed -= OnMenuButtonPressed;
+        }
+    }
     private void OnMenuButtonPressed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         if (isWaitingForNextPress)
@@ -75,14 +83,16 @@ public class XRControllerMenu : MonoBehaviour
     private void ShowMenu()
     {
         // Hide GLoves show lines
-        if (gameSystem.gameMode == 0) // Normal NPC trainer //NormalTrainerMode
+        if (gameSystem.getGameMode() == 0) // Normal NPC trainer //NormalTrainerMode
         {
             UICanvasMode1.SetActive(true);
             roundSystem.HideUINPC();
+            roundSystem.FreezeTimer();
         }
-        else if (gameSystem.gameMode == 1) // PUN NET Trainer // NetTrainerMode
+        else if (gameSystem.getGameMode() == 1) // PUN NET Trainer // NetTrainerMode
         {
             UICanvasMode2.SetActive(true);
+            roundSystem.HideUINet();
         }
       
         lineRendererLeft.enabled = true;
@@ -91,26 +101,35 @@ public class XRControllerMenu : MonoBehaviour
         lineRendererRight.enabled = true;
         xrInteractorLineVisualRight.enabled = true;
         rayInteractorRight.enabled = true;
-        TrainerDoll.SetActive(false);
+        // TrainerDoll.SetActive(false);
+        trainerDoll2.Hide();
+
     }
     private void HideMenu()
     {
         // Hide Lines show gloves
-        if (gameSystem.gameMode == 0) // Normal NPC trainer //NormalTrainerMode
+        if (gameSystem.getGameMode() == 0) // Normal NPC trainer //NormalTrainerMode
         {
             UICanvasMode1.SetActive(false);
             roundSystem.ShowUINPC();
+            roundSystem.UnfreezeTimer();
         }
-        else if (gameSystem.gameMode == 1) // PUN NET Trainer // NetTrainerMode
+        else if (gameSystem.getGameMode() == 1) // PUN NET Trainer // NetTrainerMode
         {
             UICanvasMode2.SetActive(false);
+            roundSystem.ShowUINet();
         }
         lineRendererLeft.enabled = false;
-        TrainerDoll.SetActive(true);
+       // TrainerDoll.SetActive(true);
+        trainerDoll2.Show();
         xrInteractorLineVisualLeft.enabled = false;
         rayInteractorLeft.enabled = false;
         lineRendererRight.enabled = false;
         xrInteractorLineVisualRight.enabled = false;
         rayInteractorRight.enabled = false;
+    }
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
     }
 }
