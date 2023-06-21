@@ -33,7 +33,6 @@ public class XRControllerMenu : MonoBehaviour
     private void Start()
     {
         leftController.selectAction.action.performed += OnMenuButtonPressed;
-        Debug.Log("Start");
     }
     private void OnDestroy()
     {

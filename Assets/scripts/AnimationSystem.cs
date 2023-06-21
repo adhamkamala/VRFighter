@@ -103,13 +103,10 @@ public class AnimationSystem : MonoBehaviour
     {
         bool firstSwitch;
         string currentAnimation = GetCurrentAnimationName(1);
-        Debug.Log("EL Current: "+currentAnimation);
         if (currentAnimation == null) //from still
         {
-            Debug.Log("EL Cadwdadaurrent: " + currentAnimation);
             int index = FindInArray(leftAnimationName, animationsFromStillLeft);
            if (index !=-1) {
-                Debug.Log("EL Cadwdawdawdawdawdadawdaadaurrent: " + currentAnimation);
                 yield return StartCoroutine(PlayAnimationAndWaitLayerCoroutine(animationsFromStillLeft[index].name, 1));
             }
         } else // from move
