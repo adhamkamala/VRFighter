@@ -47,7 +47,6 @@ public class Gamesystem : MonoBehaviour
         }
     }
     public void setGameMode(int i) {
-        Debug.Log("Called");
         gameMode = i;
     }
     public int getGameMode()

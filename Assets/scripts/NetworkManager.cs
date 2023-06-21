@@ -17,7 +17,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
         {
             ConnectToServer();
         }
-      
+
     }
 
     public void ConnectToServer()
@@ -38,7 +38,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
     public override void OnJoinedLobby()
     {
-        mainMenu.playMuliMode();
+       // mainMenu.playMuliMode();
     }
     public void CreateRoom()
     {

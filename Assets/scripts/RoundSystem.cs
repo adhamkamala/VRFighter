@@ -248,7 +248,7 @@ public class RoundSystem : MonoBehaviour
     }
     public void ShowUINet()
     {
-        UINetObject.SetActive(true);
+       // UINetObject.SetActive(true);
     }
 
 
