@@ -35,7 +35,7 @@ public class MainMenu : MonoBehaviour
         Gamesystem.gameMode = gameMode;
        // Gamesystem.Instance.setGameMode(1);
        // Gamesystem.Instance.checkGameMode();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+       // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
     public void playMuliMode()
     {

@@ -114,7 +114,7 @@ public class RoundSystem : MonoBehaviour
     }
     public void EndGameSystem()
     {
-        padsSystem.DeactivateBothPads();
+       // padsSystem.DeactivateBothPads();
         animationSystem.ClearAnimator();
         timerRoundActive = false;
         timerRoundActiveWasRunning = false;
