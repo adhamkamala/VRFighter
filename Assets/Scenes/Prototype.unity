@@ -3015,6 +3015,20 @@ MonoBehaviour:
   animationSystem: {fileID: 596065825}
   UIObject: {fileID: 1560531724}
   UINetObject: {fileID: 629762330}
+  startAnimations:
+  - {fileID: 7400000, guid: 608872707c015cc47ab2658c89095e51, type: 2}
+  - {fileID: 7400000, guid: c83460aed639f494ba27bc0a8a6d0513, type: 2}
+  - {fileID: 7400000, guid: 5efe761ee10c2ff429dcb8037adda8b7, type: 2}
+  - {fileID: 7400000, guid: fefe1cf676d1110428ad545f5a5054c9, type: 2}
+  - {fileID: 7400000, guid: 8c47d13d0cc1fff4899149b5caecf246, type: 2}
+  - {fileID: 7400000, guid: fb3dd9345da6d7f4482ab5ecb4e9bcf3, type: 2}
+  endAnimations:
+  - {fileID: 7400000, guid: 3e9329a5ac3f0ab47a55a59fb936cc9e, type: 2}
+  - {fileID: 7400000, guid: 935742b9dcc8dc4448641419a5d1d4cf, type: 2}
+  - {fileID: 7400000, guid: 87d5ad1ff68fa6640b17766b0e14a396, type: 2}
+  - {fileID: 7400000, guid: 96f1984914ad966458c2de84e80dc90d, type: 2}
+  - {fileID: 7400000, guid: bb012184a5e5abc498296d2301a3177e, type: 2}
+  - {fileID: 7400000, guid: a2e2437d7e950114398fd1cdfb447c5e, type: 2}
 --- !u!114 &596065825
 MonoBehaviour:
   m_ObjectHideFlags: 0
