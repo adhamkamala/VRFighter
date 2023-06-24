@@ -1435,7 +1435,6 @@ MonoBehaviour:
   xrInteractorLineVisualRight: {fileID: 8618974145472653667}
   UICanvasMode1: {fileID: 0}
   UICanvasMode2: {fileID: 0}
-  trainerDoll: {fileID: 0}
   trainerDoll2: {fileID: 0}
   gameSystem: {fileID: 0}
   roundSystem: {fileID: 0}

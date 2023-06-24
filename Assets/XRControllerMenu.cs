@@ -25,7 +25,6 @@ public class XRControllerMenu : MonoBehaviour
     public XRInteractorLineVisual xrInteractorLineVisualRight;
     public GameObject UICanvasMode1;
     public GameObject UICanvasMode2;
-    public GameObject trainerDoll;
     public VisibilitySystem trainerDoll2;
     public Gamesystem gameSystem;
     public RoundSystem roundSystem;

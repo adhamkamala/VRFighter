@@ -9,6 +9,8 @@ public class MainMenu : MonoBehaviour
     public static int gameMode;
     public NetworkManager NetworkManager;
     private static bool hasInstance = false;
+    private string selectedMap = "CyberMap";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,7 @@ public class MainMenu : MonoBehaviour
     }
     public void PlayNPCMode()
     {
-        SceneManager.LoadScene("Prototype");
+        SceneManager.LoadScene(selectedMap);
         gameMode = 0;
         Gamesystem.gameMode = gameMode;
        // Gamesystem.Instance.setGameMode(1);
@@ -49,6 +51,26 @@ public class MainMenu : MonoBehaviour
     {
      //   DontDestroyOnLoad(this);
     }
+
+    public void PlayCyberMap()
+    {
+        selectedMap = "CyberMap";
+    }
+
+    public void PlayClawMap()
+    {
+        selectedMap = "ClawMap";
+    }
+
+    public void PlayTerrainMap()
+    {
+        selectedMap = "TerrainMap";
+    }
+    public void PlayForrestMap()
+    {
+        selectedMap = "ForrestMap";
+    }
+
     public int getGameMode()
     {
        return gameMode;
