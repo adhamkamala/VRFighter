@@ -72,9 +72,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
         {
             Debug.Log("Phone has joined the room!");
             Scene currentScene = SceneManager.GetActiveScene();
-            if (currentScene.name != "Prototype")
+            if (currentScene.name != MainMenu.selectedMap)
             {
-                SceneManager.LoadScene("Prototype");
+                SceneManager.LoadScene(MainMenu.selectedMap);
             }
         }
         else

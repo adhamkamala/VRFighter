@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     public static int gameMode;
     public NetworkManager NetworkManager;
     private static bool hasInstance = false;
-    private string selectedMap = "CyberMap";
+    public static string selectedMap = "CyberMap";
 
     // Start is called before the first frame update
     void Start()
