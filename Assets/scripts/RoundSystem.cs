@@ -220,6 +220,7 @@ public class RoundSystem : MonoBehaviour
     private void StopNewRoundTimer()
     {
         timerNewRoundActive = false;
+        timerNewRoundActiveWasRunning= false;
         timeNewRoundRemaining = 5.0f;
     }
 
