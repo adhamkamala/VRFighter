@@ -23,9 +23,6 @@ public class VrHandControllerLeft : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-        //Debug.DrawLine(gameObj.position, new Vector3(gameObj.position.x, gameObj.position.y, 10), Color.yellow);
-        Debug.DrawRay(transform.position, transform.forward * distance, Color.red);
-
         if (gameSystem.getGameMode() == 0)
         {
             if (Physics.Raycast(transform.position, transform.forward * distance, out hit, distance, layer))
@@ -35,7 +32,6 @@ public class VrHandControllerLeft : MonoBehaviour
                 if (material.name.Contains(leftHandMaterial.name))
                 {
                     GameObject childTextObject = parentObject.transform.Find("TextHand").gameObject;
-                    Debug.Log(childTextObject.GetComponent<TextMeshPro>().text);
                     padsSystem.SetOrder(childTextObject.GetComponent<TextMeshPro>().text);
                     padsSystem.SetHandType(PadsSystem.HandType.LeftHand);
                     if (hit.collider.gameObject.name.Contains(leftPadName))

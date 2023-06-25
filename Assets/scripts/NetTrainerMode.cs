@@ -17,12 +17,6 @@ public class NetTrainerMode : MonoBehaviour
         Debug.Log(animationSystem);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void LunchMode()
     {
         // establish connection
@@ -36,19 +30,6 @@ public class NetTrainerMode : MonoBehaviour
         roundSystem.HideUINPC();
         roundSystem.ShowUINet();
     }
-    //IEnumerator ModeSecondCoroutine() // not req by imp. anim.sys. class
-    //{
-    //    animationSystem.ClearAnimator();
-    //    animationSystem.SetAnimatorSpeed(animatorSpeed);
-    //    setAnimatorText();
-    //    yield return StartCoroutine(animationSystem.PlayAnimationAndWaitCoroutine("XXXXXX"));
-    //    XRHandController.HapticLeftSuccess();
-    //    XRHandController.HapticRightSuccess();
-    //    TimerRoundIntiator();
-    //}
-
-
-
     public void HandlePadLeftAnimate(string leftPad)
     {
         setAnimationSystem();

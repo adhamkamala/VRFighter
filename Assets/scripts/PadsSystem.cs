@@ -106,7 +106,6 @@ public class PadsSystem : MonoBehaviour
     }
     void RightHandRandomizer()
     {
-        //rightHandText.SetText(textArraySelected[UnityEngine.Random.Range(0, textArraySelected.Length)]);
         foreach (var item in textArraySelected)
         {
             if (item!=leftHandText.text)
@@ -129,7 +128,6 @@ public class PadsSystem : MonoBehaviour
         currentPadType = padType;
     }
     public Boolean CheckOrder() {
-        Debug.Log(currentOrder + " " + finishOrder);
         if (currentOrder == finishOrder && previousOrderDone)
         {
             HitSuccess();
@@ -438,6 +436,4 @@ public class PadsSystem : MonoBehaviour
         StartRandomizePads();
     }
 
-    
-    // --> Net Animation
 }

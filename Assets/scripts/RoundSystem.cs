@@ -67,7 +67,6 @@ public class RoundSystem : MonoBehaviour
     }
     public void EndRoundWin()
     {
-        Debug.Log("U Won the Round...");
         padsSystem.DeactivateBothPads();
         animationSystem.PlayAnimationNormal(endAnimation);
         if (roundSpeedUp)
@@ -81,7 +80,6 @@ public class RoundSystem : MonoBehaviour
     }
     public void EndRoundLose()
     {
-        Debug.Log("U Lost the Round...");
         padsSystem.DeactivateBothPads();
         scoreSystem.LessLife();
         if (scoreSystem.NoLifeChecker())
@@ -104,7 +102,6 @@ public class RoundSystem : MonoBehaviour
     }
     public void EndFullRoundLose()
     {
-        Debug.Log("U Lost the Full Round...");
         padsSystem.DeactivateBothPads();
         scoreSystem.ResetLife();
         ResetRoundSpeed();
@@ -114,7 +111,6 @@ public class RoundSystem : MonoBehaviour
     }
     public void EndGameSystem()
     {
-       // padsSystem.DeactivateBothPads();
         animationSystem.ClearAnimator();
         timerRoundActive = false;
         timerRoundActiveWasRunning = false;
@@ -124,7 +120,6 @@ public class RoundSystem : MonoBehaviour
     }
     void RoundSpeedUp()
     {
-        Debug.Log("Speeding Up Round...");
         roundSpeed = roundSpeed - 1.4f;
         timeRoundRemaining = 10f + roundSpeed;
         animatorSpeed = animatorSpeed + 0.6f;

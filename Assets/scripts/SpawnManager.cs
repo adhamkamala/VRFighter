@@ -7,13 +7,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemyObject;
     public Transform[] pointsLocation;
     public float beat = (60 / 130) * 2;
-        private float timer;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    private float timer;
     // Update is called once per frame
     void Update()
     {

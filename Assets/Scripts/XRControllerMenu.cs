@@ -44,7 +44,6 @@ public class XRControllerMenu : MonoBehaviour
     {
         if (isWaitingForNextPress)
         {
-            //Debug.Log("Double press detected!");
             showMenu = !showMenu;
             if (showMenu)
             {
@@ -99,7 +98,6 @@ public class XRControllerMenu : MonoBehaviour
         lineRendererRight.enabled = true;
         xrInteractorLineVisualRight.enabled = true;
         rayInteractorRight.enabled = true;
-        // TrainerDoll.SetActive(false);
         trainerDoll2.Hide();
 
     }
@@ -118,7 +116,6 @@ public class XRControllerMenu : MonoBehaviour
             roundSystem.ShowUINet();
         }
         lineRendererLeft.enabled = false;
-       // TrainerDoll.SetActive(true);
         trainerDoll2.Show();
         xrInteractorLineVisualLeft.enabled = false;
         rayInteractorLeft.enabled = false;

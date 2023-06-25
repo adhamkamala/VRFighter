@@ -10,18 +10,6 @@ public class XRHandController : MonoBehaviour
     public float vibrationDuration = 0.2f;
     public float successAmplitude = 0.5f;
     public float failureAmplitude = 1f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void HapticLeftSuccess()
     {
        leftController.SendHapticImpulse(successAmplitude, vibrationDuration);
