@@ -40,12 +40,12 @@ public class HeightAdaptaion : MonoBehaviour
 
     public void onMinusPressed()
     {
-        ySlider.value = ySlider.value - 0.01f;
-        ySlider2.value = ySlider2.value - 0.01f;
+        ySlider.value = ySlider.value - 0.04f;
+        ySlider2.value = ySlider2.value - 0.04f;
     }
     public void onPlusPressed()
     {
-        ySlider.value = ySlider.value + 0.01f;
-        ySlider2.value = ySlider2.value + 0.01f;
+        ySlider.value = ySlider.value + 0.04f;
+        ySlider2.value = ySlider2.value + 0.04f;
     }
 }

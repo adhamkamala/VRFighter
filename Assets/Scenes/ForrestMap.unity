@@ -3127,7 +3127,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1503410778}
   m_LocalRotation: {x: -0, y: 0.34857208, z: -0, w: -0.937282}
-  m_LocalPosition: {x: 5.727, y: 0, z: -9.152}
+  m_LocalPosition: {x: 5.613, y: -0.25, z: -9.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3179,7 +3179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ySlider: {fileID: 1215982037}
-  ySlider2: {fileID: 1215982037}
+  ySlider2: {fileID: 968640662}
   minY: 0.4
   maxY: 1.2
 --- !u!1 &1545881982
