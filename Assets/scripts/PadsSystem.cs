@@ -10,6 +10,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class PadsSystem : MonoBehaviour
 {
+
     public GameObject leftHandPad; 
     public GameObject rightHandPad; 
     public Material PadsDeactivateMaterial; 
@@ -19,6 +20,7 @@ public class PadsSystem : MonoBehaviour
     public RoundSystem roundSystem;
     public XRHandController XRHandController;
     public int numBlinks = 2;
+    AudioManager audioManager;
 
     private string[] padsComb1 = new string[] { "1", "2"}; 
     private string[] padsComb2 = new string[] { "1", "X" };
@@ -66,6 +68,7 @@ public class PadsSystem : MonoBehaviour
     }
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
  
     }
 
@@ -171,9 +174,13 @@ public class PadsSystem : MonoBehaviour
         }
         if (currentPadType == PadType.LeftPad)
         {
+            audioManager.PlaySFX(audioManager.LeftPunch);
             LeftPadHitAnimation();
             LeftPadDeactivator();
+
         } else if (currentPadType == PadType.RightPad) {
+
+            audioManager.PlaySFX(audioManager.rightPunch);
             RightPadHitAnimation();
             RightPadDeactivator();
         }
@@ -199,11 +206,13 @@ public class PadsSystem : MonoBehaviour
         }
         if (currentPadType == PadType.LeftPad)
         {
+            audioManager.PlaySFX(audioManager.LeftPunch);
             LeftPadHitAnimation();
             LeftPadDeactivator();
         }
         else if (currentPadType == PadType.RightPad)
         {
+            audioManager.PlaySFX(audioManager.rightPunch);
             RightPadHitAnimation();
             RightPadDeactivator();
         }
@@ -221,11 +230,13 @@ public class PadsSystem : MonoBehaviour
 
         if (currentPadType == PadType.LeftPad)       // which hand --> LeftPadFailAnimation or RightPadFailAnimation
         {
+            audioManager.PlaySFX(audioManager.LeftPunch);
             LeftPadFailAnimation();
             LeftPadTempDeactivator();
         }
         else if (currentPadType == PadType.RightPad)
         {
+            audioManager.PlaySFX(audioManager.rightPunch);
             RightPadFailAnimation();
             RightPadTempDeactivator();
         }
@@ -248,11 +259,13 @@ public class PadsSystem : MonoBehaviour
 
         if (currentPadType == PadType.LeftPad)       // which hand --> LeftPadFailAnimation or RightPadFailAnimation
         {
-            LeftPadFailAnimation();
+            audioManager.PlaySFX(audioManager.LeftPunch);
+           LeftPadFailAnimation();
            LeftPadTempDeactivator();
         }
         else if (currentPadType == PadType.RightPad)
         {
+            audioManager.PlaySFX(audioManager.rightPunch);
             RightPadFailAnimation();
             RightPadTempDeactivator();
         }
