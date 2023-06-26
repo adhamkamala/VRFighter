@@ -12,8 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/WaitingScreen.unity
     guid: b659c7d64a624254cb710fdc46dc5ee8
   - enabled: 1
-    path: Assets/Scenes/Prototype.unity
+    path: Assets/Scenes/CyberMap.unity
     guid: a10ba968ad8cecf4cb530bd467156066
+  - enabled: 1
+    path: Assets/Scenes/ForrestMap.unity
+    guid: e6daceecde776544ba4f745f8ed7dafc
+  - enabled: 1
+    path: Assets/Scenes/TerrainMap.unity
+    guid: 684b7165e0079ab46bc8fff517b5e70d
+  - enabled: 1
+    path: Assets/Scenes/ClawMap.unity
+    guid: af0295db97741c442aac4feaa802ea11
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 84c4a3ee482e2ac4b8c9c005ce6f022f, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 4315042b28fb42c41ba1ddb9694ca1a6, type: 2}

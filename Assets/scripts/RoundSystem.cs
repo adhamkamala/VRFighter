@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,16 +21,21 @@ public class RoundSystem : MonoBehaviour
     public AnimationSystem animationSystem;
     public GameObject UIObject;
     public GameObject UINetObject;
+    public AnimationClip[] startAnimations;
+    public AnimationClip[] endAnimations;
 
     private float animatorSpeed = 0.2f;
     private bool timerRoundActive = false;
     private bool timerNewRoundActive = false;
+    private bool timerRoundActiveWasRunning = false;
+    private bool timerNewRoundActiveWasRunning = false;
     private string timerNewRoundText;
     private string timerRoundText;
     private float roundSpeed = 0f;
     private bool roundSpeedUp = false;
-    private int animationCounter = 0;
-    private int gameMode = 2;
+    private string startAnimation;
+    private string endAnimation;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -58,27 +64,22 @@ public class RoundSystem : MonoBehaviour
     public void StartRound()
     {
         StartCoroutine(RoundIntiatorCoroutine());
-        //RoundIntiatorCoroutine();
     }
     public void EndRoundWin()
     {
-        Debug.Log("U Won the Round...");
         padsSystem.DeactivateBothPads();
-       // animator.Play("TainerMovePadTrick2End");
-        animationSystem.PlayAnimationNormal("TainerMovePadTrick2End");
+        animationSystem.PlayAnimationNormal(endAnimation);
         if (roundSpeedUp)
         {
             RoundSpeedUp();
         }
         TimerNewRoundIntiator();
         StopRoundTimer();
-        animationCounter++;
 
 
     }
     public void EndRoundLose()
     {
-        Debug.Log("U Lost the Round...");
         padsSystem.DeactivateBothPads();
         scoreSystem.LessLife();
         if (scoreSystem.NoLifeChecker())
@@ -89,34 +90,36 @@ public class RoundSystem : MonoBehaviour
         {
             RoundSpeedUp();
         }
-        //animator.Play("TainerMovePadTrick2End");
-        animationSystem.PlayAnimationNormal("TainerMovePadTrick2End");
+        animationSystem.PlayAnimationNormal(endAnimation);
         TimerNewRoundIntiator();
-        animationCounter++;
+    }
+    private void RandomizeAnimation()
+    {
+        int randomCount = Random.Range(0, startAnimations.Length);
+        startAnimation = startAnimations[randomCount].name;
+        endAnimation = endAnimations[randomCount].name;
+
     }
     public void EndFullRoundLose()
     {
-        Debug.Log("U Lost the Full Round...");
         padsSystem.DeactivateBothPads();
         scoreSystem.ResetLife();
         ResetRoundSpeed();
         scoreSystem.ClearScore();
-       // animator.Play("TainerMovePadTrick2End");
-        animationSystem.PlayAnimationNormal("TainerMovePadTrick2End");
+        animationSystem.PlayAnimationNormal(endAnimation);
         TimerNewRoundIntiator();
-        animationCounter++;
     }
     public void EndGameSystem()
     {
-        padsSystem.DeactivateBothPads();
         animationSystem.ClearAnimator();
         timerRoundActive = false;
+        timerRoundActiveWasRunning = false;
         timerNewRoundActive = false;
+        timerNewRoundActiveWasRunning = false;
 
     }
     void RoundSpeedUp()
     {
-        Debug.Log("Speeding Up Round...");
         roundSpeed = roundSpeed - 1.4f;
         timeRoundRemaining = 10f + roundSpeed;
         animatorSpeed = animatorSpeed + 0.6f;
@@ -135,6 +138,29 @@ public class RoundSystem : MonoBehaviour
     {
         roundSpeedUp = false;
     }
+    public void FreezeTimer()
+    {
+        if (timerRoundActiveWasRunning)
+        {
+            timerRoundActive = false;
+        }
+
+        if (timerNewRoundActiveWasRunning)
+        {
+            timerNewRoundActive = false;
+        }
+    }
+    public void UnfreezeTimer()
+    {
+        if (timerRoundActiveWasRunning)
+        {
+            timerRoundActive = true;
+        }
+        if (timerNewRoundActiveWasRunning)
+        {
+            timerNewRoundActive = true;
+        }
+    }
     void setAnimatorText()
     {
         animationSpeedText.text = "Animation Speed: " + animatorSpeed;
@@ -150,26 +176,12 @@ public class RoundSystem : MonoBehaviour
     }
     IEnumerator RoundIntiatorCoroutine() // not req by imp. anim.sys. class
     {
+        RandomizeAnimation();
         padsSystem.StartRandomizePads();
-        // animator.Rebind();  
         animationSystem.ClearAnimator();
         animationSystem.SetAnimatorSpeed(animatorSpeed);
-       // animator.speed = animatorSpeed;
         setAnimatorText();
-
-        //  while (!animationSystem.PlayAnimationAndWait("TainerMovePadTrick2Start"))
-        //   {
-        //??
-        //     yield return null;
-        // }
-        //animator.Play("TainerMovePadTrick2Start");
-        //while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f || animator.IsInTransition(0))
-        //{
-        //    yield return null;
-        //}
-        //animationSystem.PlayAnimationAndWait("TainerMovePadTrick2Start")
-
-        yield return StartCoroutine(animationSystem.PlayAnimationAndWaitCoroutine("TainerMovePadTrick2Start"));
+        yield return StartCoroutine(animationSystem.PlayAnimationAndWaitCoroutine(startAnimation));
         XRHandController.HapticLeftSuccess();
         XRHandController.HapticRightSuccess();
         padsSystem.ActivateBothPads();
@@ -178,10 +190,12 @@ public class RoundSystem : MonoBehaviour
     void TimerRoundIntiator()
     {
         timerRoundActive = true;
+        timerRoundActiveWasRunning = true;
     }
     void TimerNewRoundIntiator()
     {
         timerNewRoundActive = true;
+        timerNewRoundActiveWasRunning = true;
     }
 
 
@@ -201,6 +215,7 @@ public class RoundSystem : MonoBehaviour
     private void StopNewRoundTimer()
     {
         timerNewRoundActive = false;
+        timerNewRoundActiveWasRunning= false;
         timeNewRoundRemaining = 5.0f;
     }
 
@@ -225,6 +240,7 @@ public class RoundSystem : MonoBehaviour
     private void StopRoundTimer()
     {
         timerRoundActive = false;
+        timerRoundActiveWasRunning = false;
         timeRoundRemaining = 10f + roundSpeed;
     }
 

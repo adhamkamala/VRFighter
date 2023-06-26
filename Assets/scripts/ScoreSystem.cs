@@ -7,16 +7,19 @@ public class ScoreSystem : MonoBehaviour
 {
 
     public int score = 0;
+    public int scoreNet = 0;
     public int lives = 6;
     public int maxScore;
     public Text LifeText;
     public Text ScoreText;
     public Text LifeTextVr;
     public Text ScoreTextVr;
+    public Text ScoreTextVrNet;
     // Start is called before the first frame update
     void Start()
     {
         score = 0;
+        scoreNet = 0;
         UpdateLife();
     }
 
@@ -35,6 +38,15 @@ public class ScoreSystem : MonoBehaviour
         score = 0;
         ScoreText.text = "Score: " + score.ToString();
         ScoreTextVr.text = "Score: " + score.ToString();
+    }
+    public void AddScoreNet(int newScore)
+    {
+        scoreNet += newScore;
+    }
+
+    public void UpdateScoreNet()
+    {
+        ScoreTextVrNet.text = "Score: " + scoreNet.ToString();
     }
     public void ResetLife()
     {
@@ -63,5 +75,6 @@ public class ScoreSystem : MonoBehaviour
     void Update()
     {
         UpdateScore();
+        UpdateScoreNet();
     }
 }

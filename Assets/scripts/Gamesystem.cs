@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Gamesystem : MonoBehaviour
 {
-    public int gameMode;
+    public static int gameMode;
     public NormalTrainerMode normalTrainerMode;
     public NetTrainerMode netTrainerMode;
     public TestMode testMode;
@@ -14,11 +14,8 @@ public class Gamesystem : MonoBehaviour
     private MainMenu mainMenu;
     void Start()
     {
-        // checkGameMode();
-        // mainMenu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
         gameMode = MainMenu.gameMode;
-        Debug.Log(gameMode);
-         checkGameMode();
+        checkGameMode();
     }
     
     // Update is called once per frame
@@ -32,22 +29,18 @@ public class Gamesystem : MonoBehaviour
         //each lunchmode
         if (gameMode == 0) // Normal NPC trainer //NormalTrainerMode
         {
-            // StartRound();
             normalTrainerMode.LunchMode();
         }
         else if (gameMode == 1) // PUN NET Trainer // NetTrainerMode
         {
             netTrainerMode.LunchMode();
-          //  LaunchModeNetTrainer();
         }
         else if (gameMode == 2) // Test Mode // TestMode
         {
             testMode.LunchMode();
-          //  LaunchModeTest();
         }
     }
     public void setGameMode(int i) {
-        Debug.Log("Called");
         gameMode = i;
     }
     public int getGameMode()
@@ -57,9 +50,5 @@ public class Gamesystem : MonoBehaviour
     public void BackToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
-    }
-    private void Awake()
-    {
-   
     }
 }

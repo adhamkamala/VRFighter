@@ -10,14 +10,13 @@ using UnityEngine.SceneManagement;
 public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     // Start is called before the first frame update
-    public MainMenu mainMenu;
     void Start()
     {
         if (!PhotonNetwork.IsConnected)
         {
             ConnectToServer();
         }
-      
+
     }
 
     public void ConnectToServer()
@@ -38,7 +37,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
     public override void OnJoinedLobby()
     {
-        mainMenu.playMuliMode();
+       // mainMenu.playMuliMode();
     }
     public void CreateRoom()
     {
@@ -73,9 +72,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
         {
             Debug.Log("Phone has joined the room!");
             Scene currentScene = SceneManager.GetActiveScene();
-            if (currentScene.name != "Prototype")
+            if (currentScene.name != MainMenu.selectedMap)
             {
-                SceneManager.LoadScene("Prototype");
+                SceneManager.LoadScene(MainMenu.selectedMap);
             }
         }
         else

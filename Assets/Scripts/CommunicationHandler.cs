@@ -28,7 +28,6 @@ public class CommunicationHandler : MonoBehaviourPunCallbacks, IOnEventCallback
 
     private void Awake()
     {
-        // Singleton pattern to ensure only one instance of CommunicationHandler exists
         if (Instance == null)
             Instance = this;
         else
@@ -121,7 +120,6 @@ public class CommunicationHandler : MonoBehaviourPunCallbacks, IOnEventCallback
 
     public void OnEvent(EventData photonEvent)
     {
-        // Check the event code and handle the corresponding event
         byte eventCode = photonEvent.Code;
 
         switch (eventCode)

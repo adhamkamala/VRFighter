@@ -13,20 +13,12 @@ public class AnimationSystem : MonoBehaviour
     public AnimationClip[] transitionAnimationsReverseLeft;
     public AnimationClip[] transitionAnimationsReverseRight;
     public Animator animator;
-    // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(this);
     }
-    private void Awake()
-    {
 
-    }
-    // Update is called once per frame
-    void Update()
-    {
-    }
     public void ClearAnimator()
     {
         animator.Rebind();
@@ -44,28 +36,6 @@ public class AnimationSystem : MonoBehaviour
 
     public bool PlayAnimationAndWait(string animationName)
     {
-        //Debug.Log("Started");
-        //bool coroutineDone = false;
-        //IEnumerator coroutine = PlayAnimationAndWaitCoroutine(animationName, () =>
-        //{
-        //    coroutineDone = true;
-        //    Debug.Log("Coroutine is done, notified in Function1");
-        //});
-        //StartCoroutine(coroutine);
-        //while (coroutine.MoveNext())
-        //{
-        //    if (coroutine.Current is bool result && result)
-        //    {
-        //        Debug.Log("Here");
-        //        return true;
-        //    }
-        //}
-        //while (!coroutineDone)
-        //{
-        //    // Do other work or wait
-        //    Debug.Log("Waiting....");
-        //}
-        //Debug.Log("Function1 completed");
         return false;
     }
 
@@ -76,7 +46,6 @@ public class AnimationSystem : MonoBehaviour
         {
             yield return null;
         }
-      //  Debug.Log("Animation Done");
         yield return true;
     }
 
@@ -103,13 +72,10 @@ public class AnimationSystem : MonoBehaviour
     {
         bool firstSwitch;
         string currentAnimation = GetCurrentAnimationName(1);
-        Debug.Log("EL Current: "+currentAnimation);
         if (currentAnimation == null) //from still
         {
-            Debug.Log("EL Cadwdadaurrent: " + currentAnimation);
             int index = FindInArray(leftAnimationName, animationsFromStillLeft);
            if (index !=-1) {
-                Debug.Log("EL Cadwdawdawdawdawdadawdaadaurrent: " + currentAnimation);
                 yield return StartCoroutine(PlayAnimationAndWaitLayerCoroutine(animationsFromStillLeft[index].name, 1));
             }
         } else // from move
@@ -129,7 +95,6 @@ public class AnimationSystem : MonoBehaviour
             int indexOfRequested = FindInArray(leftAnimationName, animationsFromStillLeft);
             if (indexOfCurrent < indexOfRequested)
             {
-            ///    SetAnimatorSpeed(0.3f);
                 Debug.Log("inedx a " + indexOfCurrent + "inedx b " + indexOfRequested);
                 int i;
                 if (firstSwitch)
@@ -157,7 +122,6 @@ public class AnimationSystem : MonoBehaviour
                 {
                     i = indexOfCurrent;
                 }
-             ///   SetAnimatorSpeed(0.3f);
                 Debug.Log("inedx a " + indexOfCurrent+ "inedx b " + indexOfRequested);
                 for (; i >= indexOfRequested; i--)
                 {
@@ -196,7 +160,6 @@ public class AnimationSystem : MonoBehaviour
             int indexOfRequested = FindInArray(rightAnimationName, animationsFromStillRight);
             if (indexOfCurrent < indexOfRequested)
             {
-               /// SetAnimatorSpeed(0.3f);
                 int i;
                 if (firstSwitch)
                 {
@@ -213,7 +176,6 @@ public class AnimationSystem : MonoBehaviour
             }
             else if (indexOfCurrent > indexOfRequested)
             {
-             ///   SetAnimatorSpeed(0.3f);
                 Debug.Log("inedx a " + indexOfCurrent + "inedx b " + indexOfRequested);
                 int i;
                 if (firstSwitch)
@@ -236,23 +198,17 @@ public class AnimationSystem : MonoBehaviour
     {
         animator.SetLayerWeight(1, 1f);
         SetAnimatorSpeed(1f);
-       // PadsNetAnimate("TrainerHighLeft", "TrainerHighRight");
-        // StartCoroutine(PlayTest());
     }
 
   
 
     public IEnumerator PlayAnimationAndWaitLayerCoroutine(string animationName, int layerIndex)
     {
-       // animator.Play(animationName, layerIndex);
         animator.CrossFade(animationName, 0.6f, layerIndex);
-       // Debug.Log(animator.GetCurrentAnimatorStateInfo(layerIndex).normalizedTime + " " + animator.IsInTransition(layerIndex));
         while (animator.GetCurrentAnimatorStateInfo(layerIndex).normalizedTime < 1.0f || animator.IsInTransition(layerIndex))
         {
-           // Debug.Log((animator.GetCurrentAnimatorStateInfo(layerIndex).normalizedTime) + " " + animator.IsInTransition(layerIndex));
             yield return null;
         }
-        //Debug.Log("DONE");
         yield return true;
     }
     private int FindInArray(string animationName, AnimationClip[] array )
