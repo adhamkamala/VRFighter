@@ -14,18 +14,18 @@ public class XRHandController : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+     //   audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
     public void HapticLeftSuccess()
     {
-       audioManager.PlaySFX(audioManager.LeftPunch);
+      // audioManager.PlaySFX(audioManager.LeftPunch);
        leftController.SendHapticImpulse(successAmplitude, vibrationDuration);
 
     }
 
     public void HapticRightSuccess()
     {
-        audioManager.PlaySFX(audioManager.rightPunch);
+      //  audioManager.PlaySFX(audioManager.rightPunch);
         rightController.SendHapticImpulse(successAmplitude, vibrationDuration);
 
     }
