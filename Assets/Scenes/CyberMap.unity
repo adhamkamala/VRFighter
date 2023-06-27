@@ -1412,6 +1412,7 @@ MonoBehaviour:
   distance: 0.25
   leftHandMaterial: {fileID: 2100000, guid: 1ff3d260b71621d4fb5acd835459ef5b, type: 2}
   gameSystem: {fileID: 4510707505346616333}
+  audioManager: {fileID: 1426270144}
 --- !u!114 &598866429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3680,8 +3681,9 @@ MonoBehaviour:
   SFXSource: {fileID: 1555168668}
   background1: {fileID: 8300000, guid: 2490c5ae3e6e5934aae1e6f6e1e72507, type: 3}
   background2: {fileID: 8300000, guid: 8a4bf9e2d6a089f499114cb67634e35d, type: 3}
-  rightPunch: {fileID: 8300000, guid: c028a36dc5073a64d95e599255eb1539, type: 3}
+  RightPunch: {fileID: 8300000, guid: c028a36dc5073a64d95e599255eb1539, type: 3}
   LeftPunch: {fileID: 8300000, guid: 1417673b55a99614ba1ef92afe49bb87, type: 3}
+  isNormal: 1
 --- !u!4 &1426270145
 Transform:
   m_ObjectHideFlags: 0
@@ -4280,6 +4282,7 @@ MonoBehaviour:
   distance: 0.25
   rightHandMaterial: {fileID: 2100000, guid: 9542fd9c83900b345b5cd18df40317fc, type: 2}
   gameSystem: {fileID: 4510707505346616333}
+  audioManager: {fileID: 1426270144}
 --- !u!114 &1633686581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7949,6 +7952,7 @@ MonoBehaviour:
   distance: 0.25
   leftHandMaterial: {fileID: 2100000, guid: 1ff3d260b71621d4fb5acd835459ef5b, type: 2}
   gameSystem: {fileID: 4510707505346616333}
+  audioManager: {fileID: 0}
 --- !u!114 &2594294339944406236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12754,6 +12758,7 @@ MonoBehaviour:
   distance: 0.25
   rightHandMaterial: {fileID: 2100000, guid: 9542fd9c83900b345b5cd18df40317fc, type: 2}
   gameSystem: {fileID: 4510707505346616333}
+  audioManager: {fileID: 0}
 --- !u!1 &8327977804941231599
 GameObject:
   m_ObjectHideFlags: 0

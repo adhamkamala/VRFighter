@@ -13,6 +13,7 @@ public class VrHandControllerLeft : MonoBehaviour
     private string rightPadName = "RightHandIndicator";
     private string leftPadName = "LeftHandIndicator";
     public Gamesystem gameSystem;
+    public AudioManager audioManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class VrHandControllerLeft : MonoBehaviour
         {
             if (Physics.Raycast(transform.position, transform.forward * distance, out hit, distance, layer))
             {
+                audioManager.PlaySFX(audioManager.LeftPunch);
                 GameObject parentObject = hit.transform.gameObject;
                 Material material = hit.collider.gameObject.GetComponent<Renderer>().material; /// check if color matches hand color --> sucess : erorr red light lost point
                 if (material.name.Contains(leftHandMaterial.name))
@@ -62,6 +64,7 @@ public class VrHandControllerLeft : MonoBehaviour
         } else if (gameSystem.getGameMode() == 1) {
             if (Physics.Raycast(transform.position, transform.forward * distance, out hit, distance, layer))
             {
+                audioManager.PlaySFX(audioManager.LeftPunch);
                 Material material = hit.collider.gameObject.GetComponent<Renderer>().material; /// check if color matches hand color --> sucess : erorr red light lost point
                 if (material.name.Contains(leftHandMaterial.name))
                 {

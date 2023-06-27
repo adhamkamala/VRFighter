@@ -2284,6 +2284,7 @@ MonoBehaviour:
   vibrationDuration: 0.2
   successAmplitude: 0.5
   failureAmplitude: 1
+  audioManager: {fileID: 0}
 --- !u!114 &2602192586963459404
 MonoBehaviour:
   m_ObjectHideFlags: 0

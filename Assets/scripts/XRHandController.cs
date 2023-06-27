@@ -10,35 +10,25 @@ public class XRHandController : MonoBehaviour
     public float vibrationDuration = 0.2f;
     public float successAmplitude = 0.5f;
     public float failureAmplitude = 1f;
-    AudioManager audioManager;
-
-    private void Awake()
-    {
-     //   audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    }
     public void HapticLeftSuccess()
     {
-      // audioManager.PlaySFX(audioManager.LeftPunch);
        leftController.SendHapticImpulse(successAmplitude, vibrationDuration);
 
     }
 
     public void HapticRightSuccess()
     {
-      //  audioManager.PlaySFX(audioManager.rightPunch);
         rightController.SendHapticImpulse(successAmplitude, vibrationDuration);
 
     }
 
     public void HapticLeftFail()
     {
-        audioManager.PlaySFX(audioManager.LeftPunch);
         StartCoroutine(Vibrate(failureAmplitude, vibrationDuration, leftController));
     }
 
     public void HapticRightFail()
     {
-        audioManager.PlaySFX(audioManager.rightPunch);
         StartCoroutine(Vibrate(failureAmplitude, vibrationDuration, rightController));
     }
 
