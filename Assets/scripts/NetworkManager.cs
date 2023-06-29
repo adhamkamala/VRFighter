@@ -44,7 +44,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
         if (PhotonNetwork.IsConnectedAndReady)
         {
             RoomOptions roomOptions = new RoomOptions();
-            roomOptions.MaxPlayers = 2;
+            roomOptions.MaxPlayers = 20;
             roomOptions.IsVisible = true;
             roomOptions.IsOpen = true;
 
@@ -58,6 +58,20 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
        // PhotonNetwork.JoinRoom("Room1");
        
+    }
+    public override void OnCreatedRoom()
+    {
+        Debug.Log("Room created successfully");
+    }
+
+    // Callback method for room creation failure
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        Debug.Log("Failed to create room: " + message);
+    }
+    public override void OnErrorInfo(ErrorInfo errorInfo)
+    {
+        Debug.Log("Failed to create room: " + errorInfo);
     }
 
     public override void OnJoinedRoom()
@@ -94,5 +108,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
         SceneManager.LoadScene("MainMenu");
       //  ConnectToServer();
     }
+
 }
     

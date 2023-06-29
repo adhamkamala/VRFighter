@@ -1764,6 +1764,7 @@ MonoBehaviour:
   distance: 0.25
   leftHandMaterial: {fileID: 2100000, guid: 1ff3d260b71621d4fb5acd835459ef5b, type: 2}
   gameSystem: {fileID: 2267244950620988514}
+  audioManager: {fileID: 0}
 --- !u!114 &5729001472846837325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2284,7 +2285,6 @@ MonoBehaviour:
   vibrationDuration: 0.2
   successAmplitude: 0.5
   failureAmplitude: 1
-  audioManager: {fileID: 0}
 --- !u!114 &2602192586963459404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4950,6 +4950,7 @@ MonoBehaviour:
   distance: 0.25
   rightHandMaterial: {fileID: 2100000, guid: 9542fd9c83900b345b5cd18df40317fc, type: 2}
   gameSystem: {fileID: 2267244950620988514}
+  audioManager: {fileID: 0}
 --- !u!1 &5443018837034375686
 GameObject:
   m_ObjectHideFlags: 0
